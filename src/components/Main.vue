@@ -91,7 +91,7 @@ export default {
     Download_1:function(){
     this.$http({
     method: 'POST',
-    url: '/main/DownloadFile_1',
+    url: 'localhost:80/main/DownloadFile_1',
     responseType: 'blob',
     headers: {
         "Content-Type": "application/pdf"
@@ -109,7 +109,7 @@ export default {
  Download_2:function(){
     this.$http({
     method: 'POST',
-    url: '/main/DownloadFile_2',
+    url: 'localhost:80/main/DownloadFile_2',
     responseType: 'blob',
     headers: {
         "Content-Type": "application/pdf"
@@ -198,7 +198,7 @@ fnGetBoardList() { //데이터 가져오기
  Download_3:function(){
     this.$http({
     method: 'POST',
-    url: 'http://localhost:9090/main/DownloadFile_3',
+    url: 'localhost:80/main/DownloadFile_3',
     responseType: 'blob',
     headers: {
         "Content-Type": "application/pdf"
@@ -216,7 +216,7 @@ fnGetBoardList() { //데이터 가져오기
  Download_4:function(){
     this.$http({
     method: 'POST',
-    url: 'http://localhost:9090/main/DownloadFile_4',
+    url: 'localhost:80/main/DownloadFile_4',
     responseType: 'blob',
     headers: {
         "Content-Type": "application/pdf"
@@ -234,7 +234,7 @@ fnGetBoardList() { //데이터 가져오기
  Download_5:function(){
     this.$http({
     method: 'POST',
-    url: 'http://localhost:9090/main/DownloadFile_5',
+    url: 'localhost:80/main/DownloadFile_5',
     responseType: 'blob',
     headers: {
         "Content-Type": "application/pdf"
