@@ -182,14 +182,12 @@ export default {
 			var start_page = this.paging.start_page;
 			var end_page = this.paging.end_page;
 			for (var i = start_page; i <= end_page; i++) pageNumber.push(i);
-			console.log(pageNumber+"목록")
 			return pageNumber;
 		},Joinpaginavigation:function() {
 			var pageNumber = [];
 			var start_page = this.join_paging.start_page;
 			var end_page = this.join_paging.end_page;
 			for (var i = start_page; i <= end_page; i++) pageNumber.push(i);
-			console.log(pageNumber+"신청")
 			return pageNumber;
 		}
 		}

@@ -143,8 +143,6 @@ export default {
 				this.user_option=this.data.category_option;
 				this.contents = this.data.contents.replace(/(\n)/g,'<br/>');
 				this.file=this.data.file_path
-				console.log('바디쉑 :'+this.body.seq)
-				console.log('쿼리쉑 :'+this.$route.query.seq)
 			})
 			.catch((err)=>{
 				console.log(err);
@@ -183,7 +181,6 @@ export default {
 				alert("로그인 후 이용해주세요.");
 				return;
 			}
-			console.log(id);
 			var body={
 				id:id
 			}
@@ -387,33 +384,7 @@ export default {
 			//document.getElementById("file_down").href=file_name;
 			})
 		}
-		
-		/*
-		Download:function(name,type){
-			var file_name="C:/workspace/hodu/vue_project2/svr/uploads/"+name;
-			console.log(file_name)
-			console.log(typeof file_name)
-			this.file_name=file_name
-			document.getElementById("abc").href=this.file_name;
-   		this.$http({
-				method: 'POST',
-				data:{name:this.file_name},
-				url: 'http://localhost:9090/info/DownloadFile',			
-	 		  config:{ responseType: 'blob',
-  			  headers: {
-       		 "Content-Type": type
-				}
-			   }
-		})
-		.then(response =>{
-   			 const url = window.URL.createObjectURL(new Blob([response.data], { type: response.headers['content-type'] }));
-    		const link = document.createElement('a');
-    		link.href = url;
-   			 link.setAttribute('download', name);
-    		document.body.appendChild(link);
-    		link.click();
-		})		
-		}*/
+
 	},
 	components:{
 		login
