@@ -21,13 +21,13 @@
             <form @submit.prevent="loginForm">
               <input v-model="id" type="text" placeholder="Username" required />
               <input v-model="pw" type="password" placeholder="Password" required />
-              <button type="submit">
-              로그인v
+              <button type="submit" style="background-color:#409EFF;color:white;">
+              로그인
              </button>
           </form>
-            <el-button size="mini" type="danger"  @click="$emit('close')">
+            <button style="background-color:#F56C6C;color:white;" @click="$emit('close')">
                 취소
-              </el-button>
+              </button>
               <!--label for="id">아이디</label>
               <br>
             <input type="text" id="id" v-model="body.id" value="body.id">
@@ -111,7 +111,7 @@ methods:{/*
              
              Cookies.set("token", result.data.token,{domain :'.jinong.co.kr'})
              // this.cookieCheck()
-           // window.location.href = `http://${result.data.url}/common/v1/loginserver`
+           window.location.href = `http://${result.data.url}/common/v1/loginserver`
             } catch (error) {
               console.log(error)
               if (error) {

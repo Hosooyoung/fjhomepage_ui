@@ -82,27 +82,26 @@ export default {
     }
   }
   ,mounted() { //페이지 시작하면은 자동 함수 실행
-    console.log("MAIN");
+    
     this.fnGetInfoList();
     this.fnGetBoardList();
-		this.get_Download_info();
   },
   
  methods: {
     Download_1:function(){
     this.$http({
     method: 'POST',
-    url: 'http://localhost:9090/main/DownloadFile_1',
+    url: '/main/DownloadFile_1',
     responseType: 'blob',
     headers: {
-        "Content-Type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+        "Content-Type": "application/pdf"
     }
 })
 .then(response =>{
     const url = window.URL.createObjectURL(new Blob([response.data], { type: response.headers['content-type'] }));
     const link = document.createElement('a');
     link.href = url;
-    link.setAttribute('download', 'TT.xlsx');
+    link.setAttribute('download', '식물재배기 UI 매뉴얼.pdf');
     document.body.appendChild(link);
     link.click();
 })
@@ -110,7 +109,7 @@ export default {
  Download_2:function(){
     this.$http({
     method: 'POST',
-    url: 'http://localhost:9090/main/DownloadFile_2',
+    url: '/main/DownloadFile_2',
     responseType: 'blob',
     headers: {
         "Content-Type": "application/pdf"
