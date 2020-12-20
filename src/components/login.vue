@@ -80,12 +80,19 @@ mounted(){
 },
 methods: {
  login: function () {
+   if(this.user.userid==''){
+     alert("아이디를 입력해주세요.")
+     return;
+   }
+   if(this.user.password==''){
+     alert("비밀번호를를 입력해주세요.")
+     return;
+   }
     this.$http.post('/users/logincheck', {
       user: this.user
     })
     .then((res) => {  //로그인 성공
         if (res.data.success == true) {
-          console.log(res.data.auth+"어쓰");
           if(res.data.auth==2){
             alert("휴면회원입니다.관리자에게 문의하세요.");
             return;
@@ -159,22 +166,7 @@ methods: {
       this.$router.push({path:'./board'});
     }
   }
-  /*,
-   openModal() {
-      this.modal = true
-    },
-    closeModal() {
-      this.modal = false
-    },
-    doSend() {
-      if (this.modal_message.length > 0) {
-        alert(this.message)
-        this.message = ''
-        this.closeModal()
-      } else {
-        alert('비밀번호를 입력해주세요.')
-      }
-    }*/
+  
 },
 components:{
   modal,

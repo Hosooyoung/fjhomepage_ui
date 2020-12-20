@@ -179,7 +179,7 @@ export default {
 				if(res.data.success==true) {
 					this.$router.push({path:'./boardwrite',query:this.body});
 				} else {
-					alert(res.data.message);
+					alert("권한이없습니다.");
 				}
 			})
 			.catch((err)=>{
@@ -253,7 +253,7 @@ export default {
 				}
 			})
 			}else {
-					alert(res.data.message);
+					alert("권한이 없습니다.");
 				}
 			})
 			.catch((err)=>{
@@ -314,7 +314,7 @@ export default {
 							}
 						})
 				}else {
-					alert(res.data.message);
+					alert("실행중 실패했습니다.\n다시이용해주세요.");
 				}
 			})
 			.catch((err)=>{
@@ -341,7 +341,7 @@ export default {
 					this.mod_auth=ord;
 				this.mod_reply=1;
 			} else {
-					alert(res.data.message);
+					alert("권한이 없습니다.");
 				}
 			})
 			.catch((err)=>{
@@ -398,53 +398,6 @@ export default {
 			//document.getElementById("file_down").href=file_name;
 			})
 		}	
-		/*계층형
-		fnGetView() {
-			this.$http.get('/board/boardread/'+this.body.seq,{params:this.body})
-			.then((res)=>{	
-				this.data = res.data.data[0];
-				this.title = this.data.title;
-				this.group_order = this.data.group_order;
-				this.orders = this.data.orders;
-				this.depth = this.data.depth;
-				this.contents = this.data.contents.replace(/(\n)/g,'<br/>');
-			})
-			.catch((err)=>{
-				console.log(err);
-			})
-		}
-		,fnList(){
-			delete this.body.seq;
-			this.$router.push({path:'./board',query:this.body});
-		},fnMod() {
-			this.$router.push({path:'./boardwrite',query:this.body}); //등록화면으로 이동하면서 파라미터를 넘겨준다.
-		},
-		fnDel(){
-			this.form ={
-			seq:this.seq
-			,group_order:this.group_order
-			,orders:this.orders
-			}
-		this.$http.post('/board/DelBoard',this.form)
-			.then((res)=>{	
-				if(res.data.success) {
-					alert('삭제되었습니다.');
-					this.$router.push('/board');
-				}
-			})
-			.catch((err)=>{
-				console.log(err);
-			})
-		}
-		,fnReply(){
-			console.log(this.reply_info);
-			this.reply_info.seq=this.seq;
-			this.reply_info.group_order=this.group_order;
-			this.reply_info.orders=this.orders;
-			this.reply_info.depth=this.depth;
-			this.$router.push({path:'./replywrite',query:this.reply_info});
-		}*/
-		
     
 	}
 }

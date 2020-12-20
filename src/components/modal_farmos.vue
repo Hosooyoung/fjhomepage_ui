@@ -116,7 +116,7 @@ methods:{/*
               console.log(error)
               if (error) {
                 console.log(error)
-                alert("err+"+error)
+                alert(error)
               } else {
                 console.log(error)
                 alert("오류가 발생했습니다. 관리자에게 문의바랍니다.")

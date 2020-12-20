@@ -216,25 +216,7 @@ export default {
 		},
 		fnRead() {
 			this.$router.push({path:'./inforead',"query":this.body});
-		},
-		/*upload(){
-				var fd= new FormData()
-		var	fd= document.getElementById('file');
-		var	fd2= document.getElementById('file').value;
-		var	fd3= document.getElementById('file_input').value;
-		console.log("zz"+fd);
-		 console.log("zz"+fd2);
-		 console.log("zz"+fd3); 
-	  this.$http.post('/info/createfile', fd)
-        .then((res) => {
-			console.log(res);
-			alert("돼?");
-        })
-        .catch((err) => {
-			console.log(err);
-			alert("안돼");
-		})
-		}	*/
+		}
 
 
     },

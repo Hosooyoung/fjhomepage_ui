@@ -134,7 +134,7 @@ export default {
 					this.$router.push('/boardwrite')
 				}
 				 else {
-					alert("권한이 없습니다.\n다시 이용해 주세요.");
+					alert("권한이 없습니다.");
 				}
 			})
 			.catch((err)=>{
