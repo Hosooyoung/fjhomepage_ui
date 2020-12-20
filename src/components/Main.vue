@@ -50,6 +50,7 @@
     <el-button size="default" v-on:click="Download_3" style="margin-left:2em;" round><strong style="color:#67C23A;">양액조제 사용 매뉴얼<br>다운로드</strong></el-button>
     <el-button size="default" v-on:click="Download_4 " style="margin-left:2em;" round><strong style="color:#67C23A;">장치 사용 매뉴얼<br>다운로드</strong></el-button>
   </div>
+  </div>
   <img src="main2.JPG">
    <div class="back2" style="background-image:url('main3.JPG')">
    <div class="back2_back">
