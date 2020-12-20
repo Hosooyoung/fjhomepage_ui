@@ -146,6 +146,10 @@ export default {
       alert("e-mail를 입력해주세요.");
       return;
     }
+    if(this.user.group==''){
+      alert("소속을 입력해주세요.");
+      return;
+    }
     if(this.user.dev==''){
       alert("장비입력 또는 장비없음을 선택해주세요.");
       return;
