@@ -45,10 +45,10 @@
     </div>
     </div>
     <div class="main_button_group">
-    <el-button size="default" v-on:click="Download_1" round><strong style="color:#67C23A;height:54px;">재배 매뉴얼</strong></el-button>
-    <el-button size="default" v-on:click="Download_2" style="margin-left:2em;" round><strong style="color:#67C23A;">제품 안전설명서<br>매뉴얼</strong></el-button>
-    <el-button size="default" v-on:click="Download_3 " style="margin-left:2em;" round><strong style="color:#67C23A;">제품 사용 설명서<br>매뉴얼</strong></el-button>
-    </div>
+     <el-button size="default"  v-on:click="Download_1" round><strong style="color:#67C23A;">육묘 매뉴얼<br>다운로드</strong></el-button>
+    <el-button size="default" v-on:click="Download_2" style="margin-left:2em;" round><strong style="color:#67C23A;">FJbox 화면(UI)사용 매뉴얼<br>다운로드</strong></el-button>
+    <el-button size="default" v-on:click="Download_3" style="margin-left:2em;" round><strong style="color:#67C23A;">양액조제 사용 매뉴얼<br>다운로드</strong></el-button>
+    <el-button size="default" v-on:click="Download_4 " style="margin-left:2em;" round><strong style="color:#67C23A;">장치 사용 매뉴얼<br>다운로드</strong></el-button>
   </div>
   <img src="main2.JPG">
    <div class="back2" style="background-image:url('main3.JPG')">
@@ -101,7 +101,7 @@ export default {
     const url = window.URL.createObjectURL(new Blob([response.data], { type: response.headers['content-type'] }));
     const link = document.createElement('a');
     link.href = url;
-    link.setAttribute('download', '식물재배기 UI 매뉴얼.pdf');
+    link.setAttribute('download', '육묘 매뉴얼.pdf');
     document.body.appendChild(link);
     link.click();
 })
@@ -119,7 +119,7 @@ export default {
     const url = window.URL.createObjectURL(new Blob([response.data], { type: response.headers['content-type'] }));
     const link = document.createElement('a');
     link.href = url;
-    link.setAttribute('download', '테스트.pdf');
+    link.setAttribute('download', 'FoodJukbox UI(화면)사용법.pdf');
     document.body.appendChild(link);
     link.click();
 })
@@ -208,7 +208,7 @@ fnGetBoardList() { //데이터 가져오기
     const url = window.URL.createObjectURL(new Blob([response.data], { type: response.headers['content-type'] }));
     const link = document.createElement('a');
     link.href = url;
-    link.setAttribute('download', '테스트.pdf');
+    link.setAttribute('download', '양액조제방법.pdf');
     document.body.appendChild(link);
     link.click();
 })
@@ -226,7 +226,7 @@ fnGetBoardList() { //데이터 가져오기
     const url = window.URL.createObjectURL(new Blob([response.data], { type: response.headers['content-type'] }));
     const link = document.createElement('a');
     link.href = url;
-    link.setAttribute('download', '개인정보처리방침.pdf');
+    link.setAttribute('download', '장치사용방법.pdf');
     document.body.appendChild(link);
     link.click();
 })
@@ -244,12 +244,30 @@ fnGetBoardList() { //데이터 가져오기
     const url = window.URL.createObjectURL(new Blob([response.data], { type: response.headers['content-type'] }));
     const link = document.createElement('a');
     link.href = url;
-    link.setAttribute('download', '홈페이지 이용약관.pdf');
+    link.setAttribute('download', '개언정보처리방침.pdf');
     document.body.appendChild(link);
     link.click();
 })
 }
-   
+  ,
+ Download_6:function(){
+    this.$http({
+    method: 'POST',
+    url: '/main/DownloadFile_6',
+    responseType: 'blob',
+    headers: {
+        "Content-Type": "application/pdf"
+    }
+})
+.then(response =>{
+    const url = window.URL.createObjectURL(new Blob([response.data], { type: response.headers['content-type'] }));
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', '홈페이지 이용약관.pdf');
+    document.body.appendChild(link);
+    link.click();
+})
+} 
  }
  ,
 components: {
@@ -272,7 +290,7 @@ Login
 	.tbList th, .tbList td{text-decoration:none; border-bottom:1px solid #eee; padding:5px 0;}
 	.tbList td.txt_left{text-align:left; text-decoration:none;}
 	.tbList td.txt_left a{text-align:left; text-decoration:none;}
-  .main_button_group{position: absolute; margin-left:900px; margin-top: 570px;}
+  .main_button_group{position: absolute; margin-left:750px; margin-top: 570px;}
   /*.tblist2{text-decoration:none; margin-left:700px; width:200px;height: 150px;}
 	.tbList2 th{border-top:1px solid #888; width:200px;height: 150px; }
 	.tbList2 th, .tbList td{text-decoration:none; border-bottom:1px solid #eee; padding:5px 0;}
