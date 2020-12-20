@@ -61,9 +61,9 @@
   </div>
   <div class="back3" style="background-image:url('main4.JPG')">
    <div class="back3_back">
-      <el-button type="text" size="small" @click="Download_4"><strong>개인정보처리지침</strong></el-button>
+      <el-button type="text" size="small" @click="Download_5"><strong>개인정보처리지침</strong></el-button>
       <el-divider direction="vertical"></el-divider>
-      <el-button type="text" size="small" @click="Download_5"><strong>이용약관</strong></el-button>
+      <el-button type="text" size="small" @click="Download_6"><strong>이용약관</strong></el-button>
    </div>
   </div>
   </div>
