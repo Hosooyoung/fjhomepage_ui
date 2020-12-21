@@ -52,7 +52,7 @@
             </div>
             <div v-if="mod_acc==2">
             <p>변경 비밀번호 </p>
-            <input v-model="pw_mod" type="password" placeholder="Password" required />
+            <input v-model="pw_mod" type="text" placeholder="Password" required />
             <p>변경 비밀번호 확인</p>
             <input v-model="pw_mod_check" type="password" placeholder="Password" required />
             <br>
@@ -80,7 +80,6 @@ export default {
       pw_check:'',
       pw_mod:'',
       pw_mod_check:'',
-      serial:'',
       mod_acc:0,
       body:{
           id:'',
@@ -136,7 +135,6 @@ methods:{/*
               console.log(res.data.success);
               if(res.data.success){
                 this.mod_acc=2;
-                this.serial=res.data.serial
               }
               else{
                 alert("비밀번호가 일치하지 않습니다.");
