@@ -12,7 +12,10 @@
           </div>
           <div class="modal-body">
             <slot name="body" >
+              <p v-if="mod_acc==0">
              fjbox계정을 입력하세요.
+             </p>
+             
             </slot>
           </div>
 
@@ -77,6 +80,7 @@ export default {
       pw_check:'',
       pw_mod:'',
       pw_mod_check:'',
+      serial:'',
       mod_acc:0,
       body:{
           id:'',
@@ -132,6 +136,7 @@ methods:{/*
               console.log(res.data.success);
               if(res.data.success){
                 this.mod_acc=2;
+                this.serial=res.data.serial
               }
               else{
                 alert("비밀번호가 일치하지 않습니다.");
@@ -168,7 +173,7 @@ methods:{/*
               const res = await this.$http.post("/fjbox/mod_pw", {
                 id:this.id_check,
                 pw: this.pw_mod,
-                before_pw:this.pw_check
+                serial:this.serial
               })
               if(res.data.success){
                 alert("비밀번호 변경성공")
@@ -177,6 +182,7 @@ methods:{/*
                 this.pw_check='';
                 this.pw_mod='';
                 this.pw_mod_check='';
+                this.serial='';
               }
               else{
                 alert("오류가 발생했습니다. 관리자에게 문의바랍니다.");
