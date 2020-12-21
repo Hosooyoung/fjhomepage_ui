@@ -18,7 +18,7 @@
 
           <div class="modal-footer">
             <slot name="footer">
-            <div v-if="this.mod_acc==0">
+            <div v-if="mod_acc==0">
             <form @submit.prevent="loginForm">
               <input v-model="id" type="text" placeholder="Username" required />
               <input v-model="pw" type="password" placeholder="Password" required />
@@ -31,11 +31,11 @@
                 취소
               </button>
               <br>
-            <button style="background-color:white;color:black;" @click="this.mod_acc=1">
+            <button style="background-color:white;color:black;" @click="mod_acc=1">
             비밀번호 변경
             </button>  
           </div>
-            <div v-if="this.mod_acc==1">
+            <div v-if="mod_acc==1">
             <p>비밀번호 확인</p>
             <input v-model="id_check" type="text" placeholder="Username" required />
             <input v-model="pw_check" type="password" placeholder="Password" required />
@@ -46,7 +46,7 @@
                 취소
             </button>
             </div>
-            <div v-if="this.mod_acc==2">
+            <div v-if="mod_acc==2">
             <p>변경 비밀번호 </p>
             <input v-model="pw_mod" type="password" placeholder="Password" required />
             <p>변경 비밀번호 확인</p>
