@@ -92,7 +92,7 @@ methods:{/*
     }
 , async loginForm() {
             try {
-              const result = await this.$http.post("/login", {
+              const result = await this.$http.post("/fjbox/login", {
                 id: this.id,
                 pw: this.pw,
               })
