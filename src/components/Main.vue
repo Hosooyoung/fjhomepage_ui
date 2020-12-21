@@ -304,6 +304,7 @@ Login
   	.back2_back{position:relative; margin-left:0%;top: 75%;}
 	.back2_back2{position:absolute; margin-left:500px;margin-top: 600px;}
   .back3{position: relative; width:100% ;height: 850px; z-index: 2;}
-	.back3_back {position:absolute; margin-left:1300px;margin-top: 785px; font-size:0.8em;color:#606266;  }
+  .back3_back {position:relative;top: 95%;left:30%; margin-right:1%;font-size:0.8em;color:#606266;display:inline-block; }
+	.back3_back2 {position:absolute; margin-left:1300px;margin-top: 785px; font-size:0.8em;color:#606266;  }
   .back3_back strong{ text-decoration: none; color:black;}
 </style>  
