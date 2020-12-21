@@ -125,11 +125,11 @@ methods:{/*
           return;
           }
           try {
-              const result = await this.$http.post("/fjbox/check_pw", {
+              const res = await this.$http.post("/fjbox/check_pw", {
                 id: this.id_check,
                 pw: this.pw_check
               })
-              if(result.data.success){
+              if(res.data.success){
                 this.mod_acc==2;
                 this.pw_check='';
               }
@@ -164,11 +164,11 @@ methods:{/*
           return;
           }
           try {
-              const result = await this.$http.post("/fjbox/mod_pw", {
+              const res = await this.$http.post("/fjbox/mod_pw", {
                 id:this.id_check,
                 pw: this.pw_mod
               })
-              if(result.data.success){
+              if(res.data.success){
                 alert("비밀번호 변경성공")
                 this.mod_acc==0;
                 this.pw_mod='';
