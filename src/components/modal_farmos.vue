@@ -173,7 +173,7 @@ methods:{/*
               const res = await this.$http.post("/fjbox/mod_pw", {
                 id:this.id_check,
                 pw: this.pw_mod,
-                serial:this.serial
+                before_pw:this.pw_check
               })
               if(res.data.success){
                 alert("비밀번호 변경성공")
