@@ -84,7 +84,7 @@ export default {
   }
 },
 mounted() {
-  mod_acc=0;
+  this.mod_acc=0;
   this.cookieCheck()
 },
 methods:{/*
@@ -127,7 +127,7 @@ methods:{/*
               })
               if(result.data.success){
                 this.mod_acc==2;
-                pw_check='';
+                this.pw_check='';
               }
               else{
                 alert("비밀번호가 일치하지 않습니다.");
