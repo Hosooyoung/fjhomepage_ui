@@ -272,7 +272,7 @@ Login
 <style scoped>
    a:link { color:black; text-decoration: none;}
   .main_loc{top:170px; margin-top:120px!important;}
-  .seemore_info{border: 0px solid black; width:300px;height: 450px;margin-left: 40%; margin-top:100px;position:absolute; background-color:#ECF1F4 ;border-radius: 15px;border:2px solid #33CC33; }
+  .seemore_info{border: 0px solid black; width:300px;height: 450px;margin-left: 50%; margin-top:100px;position:relative; background-color:#ECF1F4 ;border-radius: 15px;border:2px solid #33CC33; }
   .seemore_board{border: 0px solid black; width:300px;height: 450px;margin-left: 1200px; margin-top:100px; position: absolute; background-color: #ECF1F4;border-radius: 15px;border:2px solid #33CC33; }
   .listWrap{margin-left: 250px;}
 	.searchWrap{border:1px solid #888; border-radius:5px; text-align:center; padding:20px 0; margin-bottom:40px;}
