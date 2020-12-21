@@ -1,6 +1,9 @@
 <template>
 <div>
-<img src="title.JPG" style="margin-top:100px;width:300px;height:80px"><br>
+<a href="/">
+<img src="title.JPG" style="margin-top:100px;width:300px;height:80px">
+</a>
+<br>
 <strong style="font-size:2em" v-if="status=='join'">회원가입</strong>
 <strong style="font-size:2em" v-if="status=='mod'">회원정보수정</strong>
 <div class="check_first" v-if="status=='join'">
@@ -239,7 +242,7 @@ export default {
       if (res.data.success == true) {
         alert(res.data.message);
         localStorage.clear();
-        this.$router.go('/');
+        this.$router.push({path:'./'})
       }
       if (res.data.success == false) {
         alert(res.data.message);
