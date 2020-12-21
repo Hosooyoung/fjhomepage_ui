@@ -172,7 +172,9 @@ methods:{/*
               })
               if(res.data.success){
                 alert("비밀번호 변경성공")
-                this.mod_acc==0;
+                this.mod_acc=0;
+                this.id_check='';
+                this.pw_check='';
                 this.pw_mod='';
                 this.pw_mod_check='';
               }
