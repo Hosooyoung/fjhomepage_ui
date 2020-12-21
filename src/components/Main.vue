@@ -296,7 +296,7 @@ Login
 	.btnRightWrap{text-align:right; margin:10px 0px 0px 650px;} 
 	.back1{position: relative; width:100% ;height: 700px; z-index: 2;margin-top:30px;}
 	.back2{position: relative; width:100% ;height: 800px; z-index: 2;}
-	.back2_back{position:absolute; margin-left:600px;margin-top: 600px;}
+	.back2_back{position:absolute; margin-left:500px;margin-top: 600px;}
   .back3{position: relative; width:100% ;height: 850px; z-index: 2;}
 	.back3_back {position:absolute; margin-left:1300px;margin-top: 785px; font-size:0.8em;color:#606266;  }
   .back3_back strong{ text-decoration: none; color:black;}
