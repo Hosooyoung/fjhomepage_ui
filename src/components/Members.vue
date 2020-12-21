@@ -115,6 +115,7 @@
                     <td style="text-align:center;font-szie:0.7em;font-weight:bold"><p v-if="row.user_auth==0">활동회원</p>
                      <p v-if="row.user_auth==2">휴면회원</p>
                      <p v-if="row.user_auth==1">관리자계정</p>
+                     <p v-if="row.user_auth==4">가입승인대기</p>
 					<br>
 					<el-button type="danger" size="small" @click="reset_pw(row.id)">비밀번호 초기화</el-button>
                     </td>
