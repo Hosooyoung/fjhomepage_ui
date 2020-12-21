@@ -134,6 +134,7 @@ methods:{/*
               })
               console.log(res.data.success);
               if(res.data.success){
+                this.serial=res.data.serial;
                 this.mod_acc=2;
               }
               else{
@@ -168,6 +169,7 @@ methods:{/*
           }
           try {
                 console.log(this.pw_check+"체겍");
+                console.log(this.serial);
               const res = await this.$http.post("/fjbox/mod_pw", {
                 id:this.id_check,
                 pw: this.pw_mod,
