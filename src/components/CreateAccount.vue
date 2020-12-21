@@ -238,8 +238,8 @@ export default {
     .then((res) => {
       if (res.data.success == true) {
         alert(res.data.message);
-        localStorage.setItem("id",res.data.id);
-        this.$router.go(-1);
+        localStorage.clear();
+        this.$router.go('/');
       }
       if (res.data.success == false) {
         alert(res.data.message);
