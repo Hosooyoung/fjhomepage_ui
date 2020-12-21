@@ -31,7 +31,7 @@
                 취소
               </button>
               <br>
-            <button style="background-color:white;color:black;" @click="mod_acc=1">
+            <button style="background-color:white;color:black;" @click="this.mod_acc=1">
             비밀번호 변경
             </button>  
           </div>
@@ -125,7 +125,7 @@ methods:{/*
               const result = await this.$http.post("/fjbox/check_pw", {
                 pw: this.pw_check
               })
-              if(res.data.success){
+              if(result.data.success){
                 this.mod_acc==2;
                 pw_check='';
               }
@@ -164,7 +164,7 @@ methods:{/*
                 id:this.id_check,
                 pw: this.pw_mod
               })
-              if(res.data.success){
+              if(result.data.success){
                 alert("비밀번호 변경성공")
                 this.mod_acc==0;
                 this.pw_mod='';
