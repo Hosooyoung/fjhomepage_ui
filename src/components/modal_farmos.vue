@@ -11,13 +11,14 @@
             </slot>
           </div>
           <div class="modal-body">
-            <slot name="body">
+            <slot name="body" >
              fjbox계정을 입력하세요.
             </slot>
           </div>
 
           <div class="modal-footer">
             <slot name="footer">
+            <div v-if="mod_acc==0">
             <form @submit.prevent="loginForm">
               <input v-model="id" type="text" placeholder="Username" required />
               <input v-model="pw" type="password" placeholder="Password" required />
@@ -29,21 +30,35 @@
             <button style="background-color:#F56C6C;color:white;" @click="$emit('close')">
                 취소
               </button>
-              <!--label for="id">아이디</label>
               <br>
-            <input type="text" id="id" v-model="body.id" value="body.id">
-            <br>
-              <label for="pw">비밀번호</label>
-              <br>
-            <input type="password" id="pw" v-model="body.pw" value="body.pw">   
-            <br>  
-            <el-button size="mini" type="primary" @click="go_farmos">
+            <button style="background-color:white;color:black;" @click="mod_acc=1">
+            비밀번호 변경
+            </button>  
+          </div>
+            <div v-if="mod_acc==1">
+            <p>비밀번호 확인</p>
+            <input v-model="id_check" type="text" placeholder="Username" required />
+            <input v-model="pw_check" type="password" placeholder="Password" required />
+             <button style="background-color:#F56C6C;color:white;" @click="check_pw">
                 확인
-              </el-button>
-              <el-button size="mini" type="danger"  @click="$emit('close')">
+            </button>
+            <button style="background-color:#F56C6C;color:white;" @click="$emit('close')">
                 취소
-              </el-button-->
-            </slot>
+            </button>
+            </div>
+            <div v-if="mod_acc==2">
+            <p>변경 비밀번호 </p>
+            <input v-model="pw_mod" type="password" placeholder="Password" required />
+            <p>변경 비밀번호 확인</p>
+            <input v-model="pw_mod_check" type="password" placeholder="Password" required />
+             <button style="background-color:#F56C6C;color:white;" @click="Mod_password">
+                변경
+            </button>
+            <button style="background-color:#F56C6C;color:white;" @click="$emit('close')">
+                취소
+            </button>
+            </div>
+          </slot>
           </div>
         </div>
       </div>
@@ -56,6 +71,11 @@ import jwt_decode from "jwt-decode"
 export default {
     data: function () {
   return {
+      id_check:'',
+      pw_check:'',
+      pw_mod:'',
+      pw_mod_check:'',
+      mod_acc:0,
       body:{
           id:'',
           pw:'',
@@ -64,6 +84,7 @@ export default {
   }
 },
 mounted() {
+  mod_acc=0;
   this.cookieCheck()
 },
 methods:{/*
@@ -90,7 +111,79 @@ methods:{/*
     cookieCheck(){
         this.isCookie = Cookies.get("token") !== undefined ? true : false
        
-    }
+    },
+    async check_pw(){
+      if(this.id_check==''){
+          alert("아이디를 입력해 주세요.")
+          return;
+          }
+        if(this.pw_check==''){
+          alert("비밀번호를 입력해 주세요.")
+          return;
+          }
+          try {
+              const result = await this.$http.post("/fjbox/check_pw", {
+                pw: this.pw_check
+              })
+              if(res.data.success){
+                this.mod_acc==2;
+                pw_check='';
+              }
+              else{
+                alert("비밀번호가 일치하지 않습니다.");
+              }
+               } catch (error) {
+              console.log(error)
+              if (error) {
+                console.log(error)
+                alert(error)
+              } else {
+                console.log(error)
+                alert("오류가 발생했습니다. 관리자에게 문의바랍니다.")
+              }
+            }  
+        }
+       ,
+  async Mod_password(){
+      if(this.pw_mod==''){
+          alert("변경할 비밀번호를 입력해 주세요.")
+          return;
+          }
+      if(this.pw_mod_check==''){
+          alert("비밀번호확인란를 입력해 주세요.")
+          return;
+          }
+      if(this.pw_mod_check!=this.pw_mod){
+          alert("변경할 비밀번호와 확인란이 일치하지않습니다.\n다시입력해주세요.")
+          this.pw_mod='';
+          this.pw_mod_check='';
+          return;
+          }
+          try {
+              const result = await this.$http.post("/fjbox/mod_pw", {
+                id:this.id_check,
+                pw: this.pw_mod
+              })
+              if(res.data.success){
+                alert("비밀번호 변경성공")
+                this.mod_acc==0;
+                this.pw_mod='';
+                this.pw_mod_check='';
+              }
+              else{
+                alert("오류가 발생했습니다. 관리자에게 문의바랍니다.");
+              }
+               } catch (error) {
+              console.log(error)
+              if (error) {
+                console.log(error)
+                alert(error)
+              } else {
+                console.log(error)
+                alert("오류가 발생했습니다. 관리자에게 문의바랍니다.")
+              }
+            }       
+  }
 , async loginForm() {
             try {
               const result = await this.$http.post("/fjbox/login", {
