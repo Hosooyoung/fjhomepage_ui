@@ -153,7 +153,7 @@ export default {
       alert("장비입력 또는 장비없음을 선택해주세요.");
       return;
     }
-    var RegExp = /[ \{\}\[\]\/?.,;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=]/gi;
+    var RegExp = /[~!@#$%^&*()_+|<>?:{}]/;
     var obj = document.getElementsByName("id_input")[0]
     if (RegExp.test(obj.value)) {
       alert("특수문자는 입력하실 수 없습니다.");
