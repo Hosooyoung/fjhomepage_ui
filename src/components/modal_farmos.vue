@@ -39,6 +39,7 @@
             <p>비밀번호 확인</p>
             <input v-model="id_check" type="text" placeholder="Username" required />
             <input v-model="pw_check" type="password" placeholder="Password" required />
+            <br>
              <button style="background-color:#F56C6C;color:white;" @click="check_pw">
                 확인
             </button>
@@ -51,6 +52,7 @@
             <input v-model="pw_mod" type="password" placeholder="Password" required />
             <p>변경 비밀번호 확인</p>
             <input v-model="pw_mod_check" type="password" placeholder="Password" required />
+            <br>
              <button style="background-color:#F56C6C;color:white;" @click="Mod_password">
                 변경
             </button>
@@ -85,6 +87,7 @@ export default {
 },
 mounted() {
   this.mod_acc=0;
+  console.log("모엣"+this.mod_acc)
   this.cookieCheck()
 },
 methods:{/*
