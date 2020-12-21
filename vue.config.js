@@ -3,7 +3,7 @@ module.exports = {
         overlay: false,
         proxy: {
             '/api': {
-                target: 'http://localhost:80/api',
+                target: 'http://fjbox.jinong.co.kr/api',
                 changeOrigin: true,
                 pathRewrite: {
                     '^/api': ''

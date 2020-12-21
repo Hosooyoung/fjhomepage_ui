@@ -99,14 +99,12 @@ methods:{/*
               var decoded = jwt_decode(result.data.token)
               const lcalStorageData = {
                 user: {
-                  info: decoded,
+                  info: decoded,    
                   token: result.data.token,
                   refreshToken: result.data.refreshToken,
                 },
               }
-             //'http:fjbox.jinong.co.kr/common/v1/loginserver'
-            // var tmp_path="http://"+result.data.url+"/common/v1/loginserver"
- 
+
              Cookies.set("store", JSON.stringify(lcalStorageData), { expires: 31, path:'/common/v1/loginserver', domain : '.jinong.co.kr'})
              
              Cookies.set("token", result.data.token,{domain :'.jinong.co.kr'})
