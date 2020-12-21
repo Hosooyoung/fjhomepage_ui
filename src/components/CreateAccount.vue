@@ -40,7 +40,7 @@
 <tr>
 <th>
  <label for="id">아이디</label><br>
-  <input type="profile" id="id" v-model="user.userid" value="user.userid">
+  <input type="profile" name="id_input" id="id" v-model="user.userid" value="user.userid">
 </th>
 <th>
    <label for="name">이름</label><br>
@@ -116,8 +116,6 @@ export default {
   }
 },
   mounted() {
-    console.log("콘솔갓다배림?")
-    console.log(this.homepage_law_checked)
     this.check_status();
       },
    methods: {
@@ -127,8 +125,6 @@ export default {
     if(this.checked==true){
       this.user.dev="장비없음";
     }
-    console.log(this.checked)
-    console.log(this.user.dev)
     if(this.user.userid==''){
       alert("아이디를 입력해주세요.");
       return;
@@ -157,6 +153,13 @@ export default {
       alert("장비입력 또는 장비없음을 선택해주세요.");
       return;
     }
+    var RegExp = /[ \{\}\[\]\/?.,;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=]/gi;
+    var obj = document.getElementsByName("id_input")[0]
+    if (RegExp.test(obj.value)) {
+      alert("특수문자는 입력하실 수 없습니다.");
+      return;
+      }
+    
     if(this.user.password==this.password_check){
     this.$http.post('/users/createAcc', { 
       user: this.user
@@ -225,6 +228,13 @@ export default {
       alert("장비입력 또는 장비없음을 선택해주세요.");
       return;
     }
+    var RegExp = /[ \{\}\[\]\/?.,;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=]/gi;
+    var obj = document.getElementsByName("id_input")[0]
+    if (RegExp.test(obj.value)) {
+      alert("특수문자는 입력하실 수 없습니다.");
+      return;
+      }
+        
     var id=localStorage.getItem("id");
     
     if(id==this.user.userid){
@@ -258,8 +268,6 @@ export default {
   }
   ,
   selectAll:function(){
-    console.log("되냐구")
-    console.log(this.all_law_checked+"되나?")
     if(this.all_law_checked==true)
     {
       this.homepage_law_checked=true;
@@ -290,12 +298,11 @@ export default {
         this.user.userid=res.data.data[0].id,
         this.user.name=res.data.data[0].user_name,
         this.user.phone=res.data.data[0].phone,
-        this.user.password_check=this.user.password,
+        this.user.password_check=this.user.password,  
         this.user.email=res.data.data[0].email,
         this.user.group=res.data.data[0].user_group,
         this.user.dev=res.data.data[0].user_device
         
-          console.log('비번2'+this.user.password)
 				} else {
 					alert("실행중 실패했습니다.\n다시 이용해 주세요");
 				}

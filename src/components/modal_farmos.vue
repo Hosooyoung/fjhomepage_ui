@@ -30,11 +30,11 @@
               로그인
              </button>
           </form>
-            <button style="background-color:#F56C6C;color:white;" @click="$emit('close')">
+            <button style="background-color:#F56C6C;color:white; " @click="$emit('close')">
                 취소
               </button>
               <br>
-            <button style="background-color:white;color:black;" @click="mod_acc=1">
+            <button style="background-color:white;color:black;border:1px solid black;" @click="mod_acc=1">
             비밀번호 변경
             </button>  
           </div>
@@ -43,10 +43,10 @@
             <input v-model="id_check" type="text" placeholder="Username" required />
             <input v-model="pw_check" type="password" placeholder="Password" required />
             <br>
-             <button style="background-color:#F56C6C;color:white;" @click="check_pw">
+             <button style="background-color:#F56C6C;color:white;border:1px solid black;" @click="check_pw">
                 확인
             </button>
-            <button style="background-color:#F56C6C;color:white;" @click="$emit('close')">
+            <button style="background-color:#F56C6C;color:white;border:1px solid black;" @click="$emit('close')">
                 취소
             </button>
             </div>
@@ -56,10 +56,10 @@
             <p>변경 비밀번호 확인</p>
             <input v-model="pw_mod_check" type="password" placeholder="Password" required />
             <br>
-             <button style="background-color:#F56C6C;color:white;" @click="Mod_password">
+             <button style="background-color:#F56C6C;color:white;border:1px solid black;" @click="Mod_password">
                 변경
             </button>
-            <button style="background-color:#F56C6C;color:white;" @click="$emit('close')">
+            <button style="background-color:#F56C6C;color:white;border:1px solid black;" @click="$emit('close')">
                 취소
             </button>
             </div>
