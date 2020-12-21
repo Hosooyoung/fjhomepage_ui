@@ -2,7 +2,7 @@
   <div>
   <Login></Login>
   <div class="main_loc">
-    <div class="back1" style="background-image:url('main1.JPG');">
+    <div class="back1" style="background-image:url('main1.JPG'); background-repeat:no-repeat;">
     <div>
     <div class="seemore_info" style="main_common">
     <p style="margin-left:0px"><strong style="font-size:1.5em;align:left;margin-right:50px;">공지사항</strong>
@@ -38,20 +38,20 @@
     </div>
     <div class="main_button_group">
      <el-button size="default"  v-on:click="Download_1" round><strong style="color:#67C23A;">육묘 매뉴얼<br>다운로드</strong></el-button>
-    <el-button size="default" v-on:click="Download_2" style="margin-left:2em;" round><strong style="color:#67C23A;">FJbox 화면(UI)사용 매뉴얼<br>다운로드</strong></el-button>
+    <el-button size="default" v-on:click="Download_2" style="margin-left:2em;" round><strong style="color:#67C23A;">UI사용 매뉴얼<br>다운로드</strong></el-button>
     <el-button size="default" v-on:click="Download_3" style="margin-left:2em;" round><strong style="color:#67C23A;">양액조제 사용 매뉴얼<br>다운로드</strong></el-button>
     <el-button size="default" v-on:click="Download_4 " style="margin-left:2em;" round><strong style="color:#67C23A;">장치 사용 매뉴얼<br>다운로드</strong></el-button>
   </div>
   </div>
   <img src="main2.JPG">
-   <div class="back2" style="background-image:url('main3.JPG')">
+   <div class="back2" style="background-image:url('main3.JPG');background-repeat:no-repeat;">
    <div class="back2_back">
    <el-button type="success" size="default" style=" margin-right:310px;" v-on:click="go_link('kist')"><strong>더 보기</strong></el-button>
     <el-button type="success" size="default" style=" margin-right:310px;" v-on:click="go_link('kd')"><strong>더 보기</strong></el-button>
     <el-button type="success" size="default" v-on:click="go_link('jinong')"><strong>더 보기</strong></el-button>
    </div>
   </div>
-  <div class="back3" style="background-image:url('main4.jpg')">
+  <div class="back3" style="background-image:url('main4.jpg');background-repeat:no-repeat;">
    <div class="back3_back">
       <el-button type="text" size="small" @click="Download_5"><strong>개인정보처리지침</strong></el-button>
       <el-divider direction="vertical"></el-divider>
