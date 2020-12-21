@@ -3,7 +3,7 @@
   <Login></Login>
   <div class="main_loc">
     <div class="back1" style="background-image:url('main1.JPG'); background-repeat:no-repeat;background-position:center;">
-    <div>
+    <div class="seemore">
     <div class="seemore_info" style="main_common">
     <p style="margin-left:0px"><strong style="font-size:1.5em;align:left;margin-right:50px;">공지사항</strong>
      <el-button type="text" size="mini" v-on:click="go_info" style="color:black; align:right;"><i class="el-icon-circle-plus"></i>더보기</el-button>
@@ -35,12 +35,13 @@
 				</tr>
 			</table>
     </div>
-    </div>
+    
     <div class="main_button_group">
      <el-button size="default"  v-on:click="Download_1" round><strong style="color:#67C23A;">육묘 매뉴얼<br>다운로드</strong></el-button>
     <el-button size="default" v-on:click="Download_2" style="margin-left:2em;" round><strong style="color:#67C23A;">UI사용 매뉴얼<br>다운로드</strong></el-button>
     <el-button size="default" v-on:click="Download_3" style="margin-left:2em;" round><strong style="color:#67C23A;">양액조제 사용 매뉴얼<br>다운로드</strong></el-button>
     <el-button size="default" v-on:click="Download_4 " style="margin-left:2em;" round><strong style="color:#67C23A;">장치 사용 매뉴얼<br>다운로드</strong></el-button>
+  </div>
   </div>
   </div>
   <img src="main2.JPG" style="align:center">
@@ -272,8 +273,11 @@ Login
 <style scoped>
    a:link { color:black; text-decoration: none;}
   .main_loc{top:170px; margin-top:120px!important;}
-  .seemore_info{border: 0px solid black; width:300px;height: 450px;margin-left: 850px; margin-top:100px;position:absolute; background-color:#ECF1F4 ;border-radius: 15px;border:2px solid #33CC33; }
-  .seemore_board{border: 0px solid black; width:300px;height: 450px;margin-left: 1200px; margin-top:100px; position: absolute; background-color: #ECF1F4;border-radius: 15px;border:2px solid #33CC33; }
+  .seemore{right:0%;left:0%; position: relative;display: inline-block; width:1200px;}
+  .seemore_info{border: 0px solid black; width:300px;height: 450px; display: inline-block;margin-left: 40%; margin-right:1%;  margin-top:100px;position:relative; background-color:#ECF1F4 ;border-radius: 15px;border:2px solid #33CC33; }
+  .seemore_board{border: 0px solid black; width:300px;height: 450px;margin-left: 5%; margin-right:1%; display: inline-block; margin-top:100px; position: relative; background-color: #ECF1F4;border-radius: 15px;border:2px solid #33CC33; }
+  .seemore_info2{border: 0px solid black; width:300px;height: 450px;margin-left: 850px; margin-top:100px;position:absolute; background-color:#ECF1F4 ;border-radius: 15px;border:2px solid #33CC33; }
+  .seemore_board2{border: 0px solid black; width:300px;height: 450px;margin-left: 1200px; margin-top:100px; position: absolute; background-color: #ECF1F4;border-radius: 15px;border:2px solid #33CC33; }
   .listWrap{margin-left: 250px;}
 	.searchWrap{border:1px solid #888; border-radius:5px; text-align:center; padding:20px 0; margin-bottom:40px;}
 	.searchWrap input{width:100%; height:36px; border-radius:3px; padding:0 10px; border:1px solid #888;}
@@ -283,7 +287,8 @@ Login
 	.tbList th, .tbList td{text-decoration:none; border-bottom:1px solid #eee; padding:5px 0;}
 	.tbList td.txt_left{text-align:left; text-decoration:none;}
 	.tbList td.txt_left a{text-align:left; text-decoration:none;}
-  .main_button_group{position: absolute; margin-left:850px; margin-top: 570px;}
+  .main_button_group{position: relative; margin-left:40%; margin-top: 2%;}
+  .main_button_group2{position: absolute; margin-left:850px; margin-top: 570px;}
   /*.tblist2{text-decoration:none; margin-left:700px; width:200px;height: 150px;}
 	.tbList2 th{border-top:1px solid #888; width:200px;height: 150px; }
 	.tbList2 th, .tbList td{text-decoration:none; border-bottom:1px solid #eee; padding:5px 0;}
@@ -296,7 +301,8 @@ Login
 	.btnRightWrap{text-align:right; margin:10px 0px 0px 650px;} 
 	.back1{position: relative; width:100% ;height: 700px; z-index: 2;margin-top:30px;}
 	.back2{position: relative; width:100% ;height: 800px; z-index: 2;}
-	.back2_back{position:absolute; margin-left:500px;margin-top: 600px;}
+  	.back2_back{position:relative; margin-left:0%;top: 75%;}
+	.back2_back2{position:absolute; margin-left:500px;margin-top: 600px;}
   .back3{position: relative; width:100% ;height: 850px; z-index: 2;}
 	.back3_back {position:absolute; margin-left:1300px;margin-top: 785px; font-size:0.8em;color:#606266;  }
   .back3_back strong{ text-decoration: none; color:black;}
