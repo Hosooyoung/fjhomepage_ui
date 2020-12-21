@@ -164,7 +164,7 @@ methods:{/*
           return;
           }
           try {
-
+                console.log(this.pw_check+"체겍");
               const res = await this.$http.post("/fjbox/mod_pw", {
                 id:this.id_check,
                 pw: this.pw_mod,
