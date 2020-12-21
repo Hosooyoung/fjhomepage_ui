@@ -125,12 +125,15 @@ methods:{/*
           return;
           }
           try {
+              console.log(this.id_check)
+              console.log(this.pw_check)
               const res = await this.$http.post("/fjbox/check_pw", {
                 id: this.id_check,
                 pw: this.pw_check
               })
+              console.log(res.data.success);
               if(res.data.success){
-                this.mod_acc==2;
+                this.mod_acc=2;
                 this.pw_check='';
               }
               else{
@@ -164,6 +167,7 @@ methods:{/*
           return;
           }
           try {
+
               const res = await this.$http.post("/fjbox/mod_pw", {
                 id:this.id_check,
                 pw: this.pw_mod
