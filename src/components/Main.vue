@@ -2,7 +2,7 @@
   <div>
   <Login></Login>
   <div class="main_loc">
-    <div class="back1" style="background-image:url('main1.jpg'); background-repeat:no-repeat;background-position:center;">
+    <div class="back1" style="background-image:url('main1.JPG'); background-repeat:no-repeat;background-position:center;">
     <div>
     <div class="seemore_info" style="main_common">
     <p style="margin-left:0px"><strong style="font-size:1.5em;align:left;margin-right:50px;">공지사항</strong>
