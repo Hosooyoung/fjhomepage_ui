@@ -21,6 +21,7 @@
             <form @submit.prevent="loginForm">
               <input v-model="id" type="text" placeholder="Username" required />
               <input v-model="pw" type="password" placeholder="Password" required />
+              <br>
               <button type="submit" style="background-color:#409EFF;color:white;">
               로그인
              </button>
