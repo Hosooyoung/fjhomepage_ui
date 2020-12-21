@@ -2,7 +2,7 @@
   <div>
   <Login></Login>
   <div class="main_loc">
-    <div class="back1" style="background-image:url('main1.JPG'); background-repeat:no-repeat;background-position:center;">
+    <div class="back1" style="background-image:url('main1.jpg'); background-repeat:no-repeat;background-position:center;">
     <div>
     <div class="seemore_info" style="main_common">
     <p style="margin-left:0px"><strong style="font-size:1.5em;align:left;margin-right:50px;">공지사항</strong>
@@ -272,8 +272,8 @@ Login
 <style scoped>
    a:link { color:black; text-decoration: none;}
   .main_loc{top:170px; margin-top:120px!important;}
-  .seemore_info{border: 0px solid black; width:300px;height: 450px;margin-left: 800px; margin-top:100px;position:absolute; background-color:#ECF1F4 ;border-radius: 15px;border:2px solid #33CC33; }
-  .seemore_board{border: 0px solid black; width:300px;height: 450px;margin-left: 1150px; margin-top:100px; position: absolute; background-color: #ECF1F4;border-radius: 15px;border:2px solid #33CC33; }
+  .seemore_info{border: 0px solid black; width:300px;height: 450px;margin-left: 850px; margin-top:100px;position:absolute; background-color:#ECF1F4 ;border-radius: 15px;border:2px solid #33CC33; }
+  .seemore_board{border: 0px solid black; width:300px;height: 450px;margin-left: 1200px; margin-top:100px; position: absolute; background-color: #ECF1F4;border-radius: 15px;border:2px solid #33CC33; }
   .listWrap{margin-left: 250px;}
 	.searchWrap{border:1px solid #888; border-radius:5px; text-align:center; padding:20px 0; margin-bottom:40px;}
 	.searchWrap input{width:100%; height:36px; border-radius:3px; padding:0 10px; border:1px solid #888;}
@@ -283,7 +283,7 @@ Login
 	.tbList th, .tbList td{text-decoration:none; border-bottom:1px solid #eee; padding:5px 0;}
 	.tbList td.txt_left{text-align:left; text-decoration:none;}
 	.tbList td.txt_left a{text-align:left; text-decoration:none;}
-  .main_button_group{position: absolute; margin-left:800px; margin-top: 570px;}
+  .main_button_group{position: absolute; margin-left:850px; margin-top: 570px;}
   /*.tblist2{text-decoration:none; margin-left:700px; width:200px;height: 150px;}
 	.tbList2 th{border-top:1px solid #888; width:200px;height: 150px; }
 	.tbList2 th, .tbList td{text-decoration:none; border-bottom:1px solid #eee; padding:5px 0;}
