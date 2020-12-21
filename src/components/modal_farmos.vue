@@ -36,7 +36,7 @@
             </button>  
           </div>
             <div v-if="mod_acc==1">
-            <p>비밀번호 확인</p>
+            <p>계정 확인</p>
             <input v-model="id_check" type="text" placeholder="Username" required />
             <input v-model="pw_check" type="password" placeholder="Password" required />
             <br>
@@ -126,6 +126,7 @@ methods:{/*
           }
           try {
               const result = await this.$http.post("/fjbox/check_pw", {
+                id: this.id_check,
                 pw: this.pw_check
               })
               if(result.data.success){
