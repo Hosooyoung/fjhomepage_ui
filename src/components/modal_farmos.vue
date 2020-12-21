@@ -125,8 +125,6 @@ methods:{/*
           return;
           }
           try {
-              console.log(this.id_check)
-              console.log(this.pw_check)
               const res = await this.$http.post("/fjbox/check_pw", {
                 id: this.id_check,
                 pw: this.pw_check
@@ -134,7 +132,6 @@ methods:{/*
               console.log(res.data.success);
               if(res.data.success){
                 this.mod_acc=2;
-                this.pw_check='';
               }
               else{
                 alert("비밀번호가 일치하지 않습니다.");
@@ -170,7 +167,8 @@ methods:{/*
 
               const res = await this.$http.post("/fjbox/mod_pw", {
                 id:this.id_check,
-                pw: this.pw_mod
+                pw: this.pw_mod,
+                before_pw:this.pw_check
               })
               if(res.data.success){
                 alert("비밀번호 변경성공")
