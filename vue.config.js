@@ -3,7 +3,7 @@ module.exports = {
         overlay: false,
         proxy: {
             '/api': {
-                target: 'http://localhost:9090/api',
+                target: 'http://localhost:80/api',
                 changeOrigin: true,
                 pathRewrite: {
                     '^/api': ''
