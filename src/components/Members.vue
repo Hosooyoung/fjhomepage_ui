@@ -402,8 +402,8 @@ export default {
 .listWrap{width:1300px;margin-left: 200px;margin-top:50px;top:50px; text-align:left;border-radius:15px; border:2px solid #DCDFE6; position: relative;}
 .listWrap2{width:1400px;margin-left: 200px;margin-top:50px;top:50px; text-align:left;border-radius:15px; border:2px solid #DCDFE6; position: relative;}
 	.tblist{text-decoration:none; margin-left:auto;margin-right: auto;text-align:center;}
-	.tbList th{border-bottom:2px solid #DCDFE6;border-right:2px solid #DCDFE6;  padding:0.3em; text-align:center;font-size:1em;}
-	.tbList td{ border-bottom:2px solid #DCDFE6; padding:0.3em; text-align: left; }
+	.tbList th{border-bottom:2px solid #DCDFE6;border-right:1px solid #DCDFE6;  padding:0.3em; text-align:center;font-size:1em;}
+	.tbList td{ border-bottom:2px solid #DCDFE6; padding:0.3em;border-right:2px solid #DCDFE6; text-align: left; }
 	.tbList td.txt_left{text-align:left; text-decoration:none; color:#DCDFE6;padding:0.3em;}
 	.tbList td.txt_left a{text-align:left; text-decoration:none; color:black;padding:0.3em; }
 	.tbList td.txt_cont{height:400px; vertical-align:top;}

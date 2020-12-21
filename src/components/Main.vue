@@ -19,14 +19,6 @@
 					<td class="txt_left" style="font-size:1em;"><a href="javascript:;" @click="fnView_info(`${row.seq}`)">{{row.title}}</a></td>
 				</tr>
 			</table>
-       <!--el-table v-for="(row, idx) in info_list" :key="idx" stripe style="width: 50%">
-    <el-table-column  label="No" width="50">
-    {{row.seq}}
-    </el-table-column>
-    <el-table-column> 
-    <a href="javascript:;" @click="fnView_info(`${row.seq}`)">{{row.title}}</a>
-    </el-table-column>
-  </el-table-->
     </div>
     <div class="seemore_board" style="main_common">
     <p style="margin-left:0px"><strong style="font-size:1.5em;align:left;margin-right:70px;">Q&A</strong>
@@ -59,7 +51,7 @@
     <el-button type="success" size="default" v-on:click="go_link('jinong')"><strong>더 보기</strong></el-button>
    </div>
   </div>
-  <div class="back3" style="background-image:url('main4.JPG')">
+  <div class="back3" style="background-image:url('main4.jpg')">
    <div class="back3_back">
       <el-button type="text" size="small" @click="Download_5"><strong>개인정보처리지침</strong></el-button>
       <el-divider direction="vertical"></el-divider>
