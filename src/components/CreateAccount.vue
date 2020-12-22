@@ -78,7 +78,7 @@
   <label for="device">장비보유여부</label><br>
    <input type="text" id="device" placeholder="제품시리얼번호" v-model="user.dev"><br>
    <input  type="checkbox" id="checkbox" v-model="checked">
-<label style="font-size:1em; " for="checkbox">장비없음</label>
+<label style="font-size:1em; " for="checkbox">장비없음<h style="color:red;"> *장비가 2개이상인 경우 / 로 구분</h></label>
 </th>
 </tr>
 </table>
