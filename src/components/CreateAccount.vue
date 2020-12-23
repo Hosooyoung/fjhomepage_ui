@@ -1,6 +1,6 @@
 <template>
 <div>
-<a href="/">
+<a href="/Main">
 <img src="title.JPG" style="margin-top:100px;width:300px;height:80px">
 </a>
 <br>
@@ -252,7 +252,7 @@ export default {
       if (res.data.success == true) {
         alert(res.data.message);
         localStorage.clear();
-        this.$router.push({path:'./'})
+        this.$router.push({path:'./Main'})
       }
       if (res.data.success == false) {
         alert(res.data.message);

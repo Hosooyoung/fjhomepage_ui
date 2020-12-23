@@ -1,6 +1,6 @@
 <template>
 <div class="color">
-  <a href="/">
+  <a href="/Main">
   <img src="title.JPG" class="img_loc">
   </a>
   <div class="fj_nav">
@@ -144,7 +144,7 @@ methods: {
     localStorage.removeItem("auth");
     this.user.userid='';
     this.status=0;
-    this.$router.push({path:'./'})
+    this.$router.push({path:'./Main'})
   },
   ShowMembers: function(){
     this.$router.push({path:'./Members'});
@@ -157,7 +157,7 @@ methods: {
   },
   go_link:function(where){
     if(where=="main"){
-      this.$router.push({path:'./'});
+      this.$router.push({path:'./Main'});
     }
     else if(where=="info"){
       this.$router.push({path:'./info'});

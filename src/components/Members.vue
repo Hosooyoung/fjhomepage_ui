@@ -370,7 +370,7 @@ export default {
 		}
 		,
 		goback(){
-			 this.$router.push('/')
+			 this.$router.push('/Main')
 		},
 		reset_pw(id){
 			var form={
