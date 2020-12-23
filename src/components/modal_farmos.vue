@@ -128,7 +128,7 @@ methods:{/*
           return;
           }
           try {
-              const res = await this.$http.post("/fjbox/check_pw", {
+              const res = await this.$http.post("/check_pw", {
                 id: this.id_check,
                 pw: this.pw_check
               })
@@ -170,7 +170,7 @@ methods:{/*
           try {
                 console.log(this.pw_check+"체겍");
                 console.log(this.serial);
-              const res = await this.$http.post("/fjbox/mod_pw", {
+              const res = await this.$http.post("/mod_pw", {
                 id:this.id_check,
                 pw: this.pw_mod,
                 before_pw:this.pw_check
@@ -200,7 +200,7 @@ methods:{/*
   }
 , async loginForm() {
             try {
-              const result = await this.$http.post("/fjbox/login", {
+              const result = await this.$http.post("/login", {
                 id: this.id,
                 pw: this.pw,
               })
