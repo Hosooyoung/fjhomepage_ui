@@ -21,7 +21,7 @@ Vue.use(Router)
 export const router = new Router({
     mode: 'history',
     routes: [{
-            path: '/Main',
+            path: '/',
             name: 'main',
             component: Main
         },

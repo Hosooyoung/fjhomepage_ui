@@ -200,9 +200,11 @@ methods:{/*
   }
 , async loginForm() {
             try {
+		console.log("id"+this.id);
+		console.log("pw"+this.pw);
               const result = await this.$http.post("/login", {
                 id: this.id,
-                pw: this.pw,
+                pw: this.pw
               })
               var decoded = jwt_decode(result.data.token)
               const lcalStorageData = {
