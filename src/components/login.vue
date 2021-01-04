@@ -1,6 +1,6 @@
 <template>
 <div class="color">
-  <a href="/Main">
+  <a href="/">
   <img src="title.JPG" class="img_loc">
   </a>
   <div class="fj_nav">
@@ -131,7 +131,7 @@ methods: {
     })
   },
   createAccount: function(){
-    this.$router.push({path:'./create'});
+    this.$router.push({path:'/create'});
   },
   check_login: function(){
     if(this.check_id!=null&&this.check_auth!=null){
@@ -144,10 +144,10 @@ methods: {
     localStorage.removeItem("auth");
     this.user.userid='';
     this.status=0;
-    this.$router.push({path:'./Main'})
+    this.$router.push({path:'/'})
   },
   ShowMembers: function(){
-    this.$router.push({path:'./Members'});
+    this.$router.push({path:'/Members'});
   },
   data_flatform: function(){
     alert("서비스 준비중입니다.");
@@ -157,13 +157,13 @@ methods: {
   },
   go_link:function(where){
     if(where=="main"){
-      this.$router.push({path:'./Main'});
+      this.$router.push({path:'/'});
     }
     else if(where=="info"){
-      this.$router.push({path:'./info'});
+      this.$router.push({path:'/info'});
     }
     else if(where=="board"){
-      this.$router.push({path:'./board'});
+      this.$router.push({path:'/board'});
     }
   }
   
