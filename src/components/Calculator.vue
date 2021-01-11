@@ -83,7 +83,6 @@
                     </tr>
                 </table>
                 <button class="btn-line" @click="calc_option_1()">목표 및 가능 제조값 계산</button>
-                <pre style="color:#F56C6C;font-weight:bold" >※ 제조값 계산에는 20~30초가 소요됩니다.</pre>
                 <br>
                 <strong style="font-size:1.3em">계산 결과</strong>
                 <p v-if="calc_cat_ok=='OK'">{{calc_cat_ratio}}</p>
@@ -268,7 +267,6 @@
                     </tr>
                 </table>
                 <button class="btn-line" @click="calc_option_1()">목표 및 가능 제조값 계산</button>
-                <pre style="color:#F56C6C;font-weight:bold" >※ 제조값 계산에는 20~30초가 소요됩니다.</pre>
                 <br>
                 <strong style="font-size:1.3em">계산 결과</strong>
                 <p v-if="calc_cat_ok=='OK'">{{calc_cat_ratio}}</p>
@@ -383,7 +381,6 @@
                 </tr>
                 </table>
                 <button class="btn-line" @click="calc_option_1()">목표 및 가능 제조값 계산</button>
-                <pre style="color:#F56C6C;font-weight:bold" >※ 제조값 계산에는 20~30초가 소요됩니다.</pre>
                 <br>
                 <strong style="font-size:1.3em">계산 결과</strong>
                 <p v-if="calc_cat_ok=='OK'">{{calc_cat_ratio}}</p>
