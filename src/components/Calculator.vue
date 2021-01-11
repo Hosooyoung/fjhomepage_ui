@@ -682,6 +682,7 @@ export default {
                 b:this.inn,
                 c:this.whang
             }
+            console.log(body_temp)
              this.colors[0]='#db7365'
             this.Area_Axis[0]='A:K'
             this.Area_Axis[1]='B:Ca'
