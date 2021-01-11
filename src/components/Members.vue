@@ -1,144 +1,146 @@
 <template>
 	<div>
   <login></login>
-  <div class="main_loc">
-  <div class="titles">
-  <strong>회원관리</strong>
-	<br>
-	<el-button type="primary" size="small" @click="goback">메인으로 돌아가기</el-button>
-  </div>
- 	<div class="listWrap">
-	  <h1>회원신청목록</h1>
-	  		 <select v-model="join_search.option">
-			<option disabled value="">옵션선택</option>
-			<option>아이디</option>
-			<option>이름</option>
-			<option>소속</option>
-			<option>연락처</option>
-			<option>이메일</option>
-			<option>장비</option>
-		</select>
-		<input type="text" v-model="join_search.contents" ref="join_search.contents" />
-		<el-button type="primary" size="mini" @click="fnjoin_Search" icon="el-icon-search"></el-button>
-		<el-button type="text" size="small" @click="join_redirection" v-if="join_show_all==true">가입신청 전체목록 보기</el-button>
-       		<table class="tbList">
-				<colgroup>
-					<col width=150px />
-					<col width=100px />
-					<col width=200px />
-					<col width=200px />
-					<col width=300px />
-					<col width=150px />
-					<col width=150px />
-				</colgroup>
-				<tr>
-					<th>아이디</th>
-					<th>이름</th>
-                    <th>소속</th>
-					<th>연락처</th>
-					<th>이메일</th>
-                    <th>등록장비</th>
-					<th>비고</th>
-				</tr>
-				<tr v-for="(row, idx) in join_list" :key="idx">
-					<td>{{row.id}}</td>
-					<td>{{row.user_name}}</td>
-					<td>{{row.user_group}}</td>
-					<td>{{row.phone}}</td>
-					<td>{{row.email}}</td>
-					<td>{{row.user_device}}</td>
-                    <td>
-                     <el-button @click="Getjoin(row.id,1)" v-if="row.user_auth==4" id="join_button" type="primary" size="mini">승인</el-button>
-					 <el-button @click="Getjoin(row.id,2)" v-if="row.user_auth==4" id="join_button" type="danger" size="mini">거절</el-button>
-                    </td>
-				</tr>
-			</table>
-		 	</div>
-	<div class="join_pagination" v-if="join_paging.totalCount > 0">
-			<a href="javascript:;" @click="fnJoinPage(1)" class="first">&lt;&lt;</a>
-			<a href="javascript:;" v-if="join_paging.start_page > 10" @click="fnJoinPage(`${join_paging.start_page-1}`)"  class="prev">&lt;</a>
-			<template v-for=" (n,index) in Joinpaginavigation()">
-				<template v-if="join_paging.page==n">
-					<strong :key="index">{{n}}</strong> 
-				</template>
-				<template v-else>
-					<a href="javascript:;" @click="fnJoinPage(`${n}`)" :key="index">{{n}}</a>
-				</template>
-			</template>
-			<a href="javascript:;" v-if="join_paging.total_page > join_paging.end_page" @click="fnJoinPage(`${join_paging.end_page+1}`)"  class="next">&gt;</a>
-			<a href="javascript:;" @click="fnJoinPage(`${join_paging.total_page}`)" class="last">&gt;&gt;</a>
-    </div>
-		<div class="listWrap2">
-		<h1>전체 회원 목록</h1>
-		 <select v-model="search.option">
-			<option disabled value="">옵션선택</option>
-			<option>아이디</option>
-			<option>이름</option>
-			<option>소속</option>
-			<option>연락처</option>
-			<option>이메일</option>
-			<option>장비</option>
-		</select>
-		<input type="text" v-model="search.contents" ref="search.contents" />
-		<el-button type="primary" size="mini" @click="fnSearch" icon="el-icon-search"></el-button>
-		<el-button type="text" size="small" @click="redirection" v-if="show_all==true">전체목록 보기</el-button>
-	
-	   		<table class="tbList">
-				<colgroup>
-					<col width=150px />
-					<col width=100px />
-					<col width=200px />
-					<col width=200px />
-					<col width=300px />
-					<col width=150px />
-					<col width=150px />
-					<col width=150px />
-				</colgroup>
-				<tr>
-					<th>아이디</th>
-                    <th>이름</th>
-					<th>소속</th>
-					<th>연락처</th>
-					<th>이메일</th>
-                    <th>등록장비</th>
-					<th>마지막 로그인</th>
-                    <th>비고</th>
-				</tr>
-				<tr v-for="(row, idx) in list" :key="idx">
-					<td>{{row.id}}</td>
-					<td>{{row.user_name}}</td>
-					<td>{{row.user_group}}</td>
-					<td>{{row.phone}}</td>
-					<td>{{row.email}}</td>
-					<td>{{row.user_device}}</td>
-                    <td>{{row.last_login}}</td>
-                    <td style="text-align:center;font-szie:0.7em;font-weight:bold"><p v-if="row.user_auth==0">활동회원</p>
-                     <p v-if="row.user_auth==2">휴면회원</p>
-                     <p v-if="row.user_auth==1">관리자계정</p>
-                     <p v-if="row.user_auth==4">가입승인대기</p>
-					<br>
-					<el-button type="danger" size="small" @click="reset_pw(row.id)">비밀번호 초기화</el-button>
-                    </td>
-				</tr>
-			</table>
-		</div>
+	<div class="contents">
+	  <h3 class="tit">회원신청목록</h3>
+			<legend>회원신청목록</legend>
+					<div class="search mt40">
+					<select title="검색항목 선택" class="sel_ty1" v-model="join_search.option">
+						<option disabled value="">옵션선택</option>
+						<option>아이디</option>
+						<option>이름</option>
+						<option>소속</option>
+						<option>연락처</option>
+						<option>이메일</option>
+						<option>장비</option>
+					</select>
+					<input type="text" class="inp_ty2" title="검색어" style="width:398px;" v-model="join_search.contents" ref="join_search.contents"/>
+					<button  class="btn-sm3"  @click="fnjoin_Search">조회</button>
+					<button  class="btn-sm3" @click="join_redirection" v-if="join_show_all==true">신청목록 전체보기</button>
+				
+				</div>
+					<table class="tbl_01">
+						<colgroup>
+							<col style="width:140px" />
+							<col style="width:100px" />
+							<col style="width:auto" />
+							<col style="width:140px" />
+							<col style="width:250px" />
+							<col style="width:120px" />
+							<col style="width:160px" />
+						</colgroup>
+						<thead>
+							<tr>
+								<th>아이디</th>
+								<th>이름</th>
+								<th>소속</th>
+								<th>전화번호</th>
+								<th>이메일주소</th>
+								<th>장비 소유</th>
+								<th>승인/거절</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr v-for="(row, idx) in join_list" :key="idx">
+								<td>{{row.id}}</td>
+								<td>{{row.user_name}}</td>
+								<td>{{row.user_group}}</td>
+								<td>{{row.phone}}</td>
+								<td>{{row.email}}</td>
+								<td>{{row.user_device}}</td>
+                    			<td>
+									<button  @click="Getjoin(row.id,1)" v-if="row.user_auth==4" class="btn-sm mr8">Y</button>
+									<button @click="Getjoin(row.id,2)" v-if="row.user_auth==4" class="btn-sm2">N</button>
+                     			</td>
+							</tr>
+						</tbody>
+					</table>				
+					<div class="paging" v-if="join_paging.totalCount > 0">
+						<a href="javascript:;" @click="fnJoinPage(1)" class="first">&lt;&lt;</a>
+						<a href="javascript:;" v-if="join_paging.start_page > 10" @click="fnJoinPage(`${join_paging.start_page-1}`)"  class="prev">&lt;</a>
+						<template v-for=" (n,index) in Joinpaginavigation()">
+						<template v-if="join_paging.page==n">
+						<strong :key="index">{{n}}</strong> 
+						</template>
+						<template v-else>
+						<a href="javascript:;" @click="fnJoinPage(`${n}`)" :key="index">{{n}}</a>
+						</template>
+						</template>
+						<a href="javascript:;" v-if="join_paging.total_page > join_paging.end_page" @click="fnJoinPage(`${join_paging.end_page+1}`)"  class="next">&gt;</a>
+						<a href="javascript:;" @click="fnJoinPage(`${join_paging.total_page}`)" class="last">&gt;&gt;</a>
+    				</div>
+				<h3 class="tit">회원목록</h3>
+					<legend>회원목록</legend>
+					<div class="search mt40">
+					<select title="검색항목 선택" class="sel_ty1" v-model="search.option">
+						<option disabled value="">옵션선택</option>
+						<option>아이디</option>
+						<option>이름</option>
+						<option>소속</option>
+						<option>연락처</option>
+						<option>이메일</option>
+						<option>장비</option>
+					</select>
+					<input type="text" class="inp_ty2" title="검색어" style="width:398px;" v-model="search.contents" ref="search.contents"/>
+					<button  class="btn-sm3 mr8"  @click="fnSearch">조회</button>
+					<button  class="btn-sm3"  @click="redirection" v-if="show_all==true">전체목록 보기</button>
+					</div>
+					<table class="tbl_01">
+						<colgroup>
+							<col style="width:140px" />
+							<col style="width:100px" />
+							<col style="width:auto" />
+							<col style="width:140px" />
+							<col style="width:250px" />
+							<col style="width:120px" />
+							<col style="width:160px" />
+						</colgroup>
+						<thead>
+							<tr>
+								<th>아이디</th>
+								<th>이름</th>
+								<th>소속</th>
+								<th>전화번호</th>
+								<th>이메일주소</th>
+								<th>장비 소유</th>
+								<th>비고</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr v-for="(row, idx) in list" :key="idx">
+								<td>{{row.id}}</td>
+								<td>{{row.user_name}}</td>
+								<td>{{row.user_group}}</td>
+								<td>{{row.phone}}</td>
+								<td>{{row.email}}</td>
+								<td>{{row.user_device}}</td>
+                    			<td>
+									<p v-if="row.user_auth==0">활동회원</p>
+                    				<p v-if="row.user_auth==2">휴면회원</p>
+                    				<p v-if="row.user_auth==1">관리자계정</p>
+                   					<p v-if="row.user_auth==4">가입승인대기</p>
+									<button  @click="reset_pw(row.id)" class="btn-sm mr8">P.W 초기화</button>
+                     			</td>
+							</tr>
+						</tbody>
+					</table>				
+					<div  class="paging" v-if="paging.totalCount > 0">
+						<a href="javascript:;" @click="fnPage(1)" class="first">&lt;&lt;</a>
+						<a href="javascript:;" v-if="paging.start_page > 10" @click="fnPage(`${paging.start_page-1}`)"  class="prev">&lt;</a>
+						<template v-for=" (n,index) in paginavigation()">
+						<template v-if="paging.page==n">
+						<strong :key="index">{{n}}</strong> 
+						</template>
+						<template v-else>
+						<a href="javascript:;" @click="fnPage(`${n}`)" :key="index">{{n}}</a>
+						</template>
+						</template>
+						<a href="javascript:;" v-if="paging.total_page > paging.end_page" @click="fnPage(`${paging.end_page+1}`)"  class="next">&gt;</a>
+						<a href="javascript:;" @click="fnPage(`${paging.total_page}`)" class="last">&gt;&gt;</a>
+    				</div>
+	</div>
+	</div>
 
-		<div class="pagination" v-if="paging.totalCount > 0">
-			<a href="javascript:;" @click="fnPage(1)" class="first">&lt;&lt;</a>
-			<a href="javascript:;" v-if="paging.start_page > 10" @click="fnPage(`${paging.start_page-1}`)"  class="prev">&lt;</a>
-			<template v-for=" (n,index) in paginavigation()">
-				<template v-if="paging.page==n">
-					<strong :key="index">{{n}}</strong> 
-				</template>
-				<template v-else>
-					<a href="javascript:;" @click="fnPage(`${n}`)" :key="index">{{n}}</a>
-				</template>
-			</template>
-			<a href="javascript:;" v-if="paging.total_page > paging.end_page" @click="fnPage(`${paging.end_page+1}`)"  class="next">&gt;</a>
-			<a href="javascript:;" @click="fnPage(`${paging.total_page}`)" class="last">&gt;&gt;</a>
-    </div>
-	</div>
-	</div>
 </template> 
 
 <script>
@@ -199,11 +201,10 @@ export default {
 	}
 	, methods:{
 		fnGetList() { //데이터 가져오기 함수
-      console.log('1');
+   
       this.body = { 
 				page:this.page
 			}
-      console.log(this.body);
 			this.$http.get('/users/getList',{params:this.body})
 			.then((res)=>{
 				if(res.data.success) {
@@ -231,11 +232,6 @@ export default {
      		 this.join_body = { 
 				page:this.join_page
 			}
-			console.log("조조"+this.join_page)
-			console.log("조조"+this.join_paging.page)
-			console.log("조조"+this.join_paging.total_page)
-			console.log("조조"+this.join_paging.start_page)
-			console.log("조조"+this.join_paging.end_page)
 			this.$http.get('/users/getJoinList',{params:this.join_body})
 			.then((res)=>{
 				if(res.data.success) {
@@ -253,14 +249,12 @@ export default {
 		, fnPage(n) {//페이징 이
 			if(this.page != n) {
 				this.page = n;
-				console.log(this.page+"페이지")
 				this.fnGetList();
 			}
 		},
 		fnJoinPage(n) {//페이징 이
 			if(this.join_page != n) {
 				this.join_page = n;
-				console.log(this.page+"조페이지")
 				this.fnGetJoinList();
 			}
 		},
@@ -398,7 +392,8 @@ export default {
 </script>
 
 <style scoped>
-  .main_loc{top:170px; margin-top:120px!important;}
+@import '../assets/css/member.css'
+/*  .main_loc{top:170px; margin-top:120px!important;}
 .titles{font-size:2.5em;position: relative;margin-top:120px;top:50px;}
 .listWrap{width:1300px;margin-left: 200px;margin-top:50px;top:50px; text-align:left;border-radius:15px; border:2px solid #DCDFE6; position: relative;}
 .listWrap2{width:1400px;margin-left: 200px;margin-top:50px;top:50px; text-align:left;border-radius:15px; border:2px solid #DCDFE6; position: relative;}
@@ -417,4 +412,5 @@ export default {
 	.first, .prev, .next, .last{border:1px solid #666; margin:0 5px;}
 	.join_pagination span{display:inline-block; padding:0 5px; color:#333;}
 	.join_pagination a{text-decoration:none; display:inline-block; padding:0 5px; color:#666;}
+	*/
 </style>

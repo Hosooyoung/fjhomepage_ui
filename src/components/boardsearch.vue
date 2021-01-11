@@ -1,48 +1,52 @@
 <template>
-	<div>
+			<div>
 	<login></login>
-  	<div class="listWrap">
-	<div class="div_for_table" style="align:center">
-    <strong style="font-size:3em;margin-right:400px">Q&A 검색결과</strong>
-	<el-select v-model="search.option" size="small" placeholder="옵션선택" class="option">
-    <el-option value="제목">제목</el-option>
-	<el-option value="내용">내용</el-option>
-  </el-select>
-	
-	<el-input v-model="search.contents" size="small" class="input" ref="search.contents"></el-input>
-	<el-button type="primary" @click="fnSearch" icon="el-icon-search" size="medium"></el-button>
-		<el-button style=""  type="success"  size="default"  @click="fnAdd"  ref="auth" v-if="check_auth=='admin'||check_auth=='user'"><i class="el-icon-edit"></i><strong>글쓰기</strong></el-button>
-			<table class="tbList">
+  	<div class="contents">
+	<h3 class="tit">Q&A 게시판</h3>
+	<div class="search">
+					<legend>게시글 검색</legend>
+					<select  v-model="search.option" class="sel_ty1">
+						<option value="제목">제목</option>
+						<option value="내용">내용</option>
+					</select>
+					<input type="text" v-model="search.contents" ref="search.contents" class="inp_ty2" style="width:398px;" />
+					<button  @click="fnSearch" class="btn-sm3">검색</button>
+			</div>
+			<table class="tbl_board mt30" summary="번호, 제목, 등록일, 작성자의 공지사항 목록 입니다.">
+				<caption>게시판 목록</caption>
 				<colgroup>
-					<col width="100px" />
-					<col width="700px" />
-					<col width="200px" />
-					<col width="200px" />
-					<col width="200px" />
-					<col width="100px" />
+					<col width="10%" />
+					<col width="*" />
+					<col width="12%" />
+					<col width="11%" />
+					<col width="8%" />
 				</colgroup>
-				<tr style="background-color:#F5FBF7;bordercolor:#F5FBF7;border-top-radius:30px">
-					<th>no</th>
-					<th>제목</th>
-					<th>아이디</th>
-					<th>등록일</th>
-					<th>수정일</th>
-					<th>조회수</th>
+				<thead>
+					<tr>
+						<th scope="col">번호</th>
+						<th scope="col">제목</th>
+						<th scope="col">등록일</th>	
+						<th scope="col">작성자</th>
+						<th scope="col">조회수</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="(row, idx) in list" :key="idx" >
+						<td >{{row.seq}}</td>
+						<td class="txt_left"><a href="javascript:;" @click="fnView(`${row.seq}`)">{{row.title}}</a></td>
+						<td>{{row.write_date.substr(0,10)}}</td>
+						<td>{{row.user_id}}</td>
+						<td>{{row.hit}}</td>
 				</tr>
-				<tr v-for="(row, idx) in list" :key="idx">
-					<td>{{row.seq}}</td>
-					<td class="txt_left"><a href="javascript:;" @click="fnView(`${row.seq}`)">{{row.title}}</a></td>
-					<td>{{row.user_id}}</td>
-					<td>{{row.write_date.substr(0,10)}}</td>
-					<td>{{row.rewrite_date.substr(0,10)}}</td>
-					<td>{{row.hit}}</td>
-				</tr>
+				</tbody>
 			</table>
-		</div>
-	<div class="pagination" v-if="paging.totalCount > 0">
-			<a href="javascript:;" @click="fnPage(1)" class="first"><i class="el-icon-d-arrow-left"></i></a>
-			<a href="javascript:;" v-if="paging.start_page > 10" @click="fnPage(`${paging.start_page-1}`)"  class="prev"><i class="el-icon-arrow-left"></i></a>
-			<template v-for=" (n,index) in paginavigation()">
+			<div class="btn_left mt20">
+				<button type="button"  @click="fnAdd" ref="auth" v-if="check_auth=='admin'||check_auth=='user'"  class="btn-default">글쓰기</button>
+			</div>
+			<div class="paging"  v-if="paging.totalCount > 0"> 
+			  <a href="javascript:;" class="first" @click="fnPage(1)">첫 페이지</a>
+			  <a href="javascript:;" class="prev2"  v-if="paging.start_page > 10"  @click="fnPage(`${paging.start_page-1}`)">10개 이전 페이지</a>
+			  <template v-for=" (n,index) in paginavigation()">
 				<template v-if="paging.page==n">
 					<strong :key="index">{{n}}</strong> 
 				</template>
@@ -50,10 +54,11 @@
 					<a href="javascript:;" @click="fnPage(`${n}`)" :key="index">{{n}}</a>
 				</template>
 			</template>
-			<a href="javascript:;" v-if="paging.total_page > paging.end_page" @click="fnPage(`${paging.end_page+1}`)"  class="next"><i class="el-icon-arrow-right"></i></a>
-			<a href="javascript:;" @click="fnPage(`${paging.total_page}`)" class="last"><i class="el-icon-d-arrow-right"></i></a>
-		</div>
-	    </div>
+			  <a href="javascript:;" class="next2" v-if="paging.total_page > paging.end_page" @click="fnPage(`${paging.end_page+1}`)">10개 다음 페이지</a>
+			  <a href="javascript:;" class="last" @click="fnPage(`${paging.total_page}`)">마지막 페이지</a> 
+			</div>
+
+	</div>
 	</div>
     
 </template> 
@@ -134,7 +139,6 @@ export default {
 		, fnPage(n) {//페이징 이
 			if(this.page != n) {
 				this.page = n;
-				console.log(this.recieved_option+this.recieved_contents)
 				this.fnSearchlist(this.recieved_contents,this.recieved_option);
 			}
 		}
@@ -176,6 +180,9 @@ export default {
 </script>
 
 <style scoped>
+
+@import '../assets/css/board.css'
+/*
 .tblist{text-decoration:none; margin-left:auto;margin-right: auto;}
 	.tbList th{border-bottom:2px solid #DCDFE6; padding:1em; }
 	.tbList th, .tbList td{ border-bottom:2px solid #DCDFE6;  padding:1em; }
@@ -190,5 +197,5 @@ export default {
 .listWrap{margin-left: 200px;margin-top:100px;top:50px;position: relative;}
 
   .input{width:300px};
-  .option{width:50px};
+  .option{width:50px};*/
 </style>

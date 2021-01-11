@@ -1,54 +1,54 @@
 <template>
 	<div>
 	<login></login>
-   	
-		<div class="listWrap">
-		
-				<div class="div_for_table">
-				<strong style="font-size:2.5em;margin-right:1300px; ">QnA {{seq ? '수정':'등록'}}</strong> 
-					<table class="tbList_input">
-					<colgroup>
-						<col width="200px" />
-						<col width="950px" />
-					</colgroup>
+    <div class="contents">
+   	<h3 class="tit">Q&A {{seq ? '수정':'등록'}}</h3>
+		<table class="tbl_board_write" summary="공지사항 글내용, 첨부파일의 글쓰기 입니다">
+				<caption>게시판 글쓰기</caption>
+				<colgroup>
+					<col width="200px">
+					<col width="1000px">
+				</colgroup>
+				<tbody>
 					<tr>
-						<th style="border-top:2px solid #DCDFE6;">분류</th>
-						<td style="border-top:2px solid #DCDFE6;">
-						<el-select v-model="write_option" ref="write_option" size="small" placeholder="옵션선택">
-						<el-option value="제품(장비)">제품(장비)</el-option>
-  						<el-option value="매뉴얼">매뉴얼</el-option>
-  						<el-option value="기타">기타</el-option>
-						</el-select>
+						<th scope="col" class="first">분류</th>
+							<td class="first">
+							<select  v-model="write_option" ref="write_option" class="sel_ty1">
+								<option value="공지사항">공지사항</option>
+								<option value="업데이트">업데이트</option>
+  								<option value="매뉴얼">매뉴얼</option>
+  								<option value="기타">기타</option>
+							</select>
 						</td>
+						</tr>
+					<tr>
+						<th scope="col">제목</th>
+						<td ><input style="width:97%" title="제목"  v-model="title" ref="title" type="text" class="inp_ty3"></td>
 					</tr>
 					<tr>
-						<th>제목</th>
-						<td><input type="text" style="width:900px;height:40px;  border:2px solid #DCDFE6;" v-model="title" ref="title"/></td>
-					</tr>
-					<tr>
-						<th>파일첨부</th>
+						<th scope="col">첨부파일</th>
 						<td>
-						<form> 
-						<input type="file" name="file_input" id="file_input" />
-						</form>
-						</td>
-					</tr>
-					<tr>
-						<th style="vertical-align:top">내용</th>
-						<td>
-						<textarea v-model="contents" ref="contents" style="width:900px;height:400px; resize:none; border:2px solid #DCDFE6;" ></textarea></td>
-					</tr>
-				</table>
-		</div>
+							<form> 
+							<input type="file" name="file_input" id="file_input" class="file_b"/>
+							</form>	
+							
 
-			<el-divider direction="vertical"></el-divider>  
-			<el-button size="default" type="text" class="btnRightWrap" @click="fnList">취소</el-button>
-			<el-divider direction="vertical"></el-divider>  
-			<el-button v-if="!seq" type="text" size="default" class="btnRightWrap" @click="fnAddBoard" >등록</el-button>
-			<el-divider direction="vertical"></el-divider>  
-			<el-button v-if="seq" type="text" size="default" @click="fnModBoard" class="btnRightWrap">완료</el-button>
-		</div>	
-	</div>
+						</td>
+					</tr>
+					<tr>
+						<th scope="col">내용</th>
+						<td class="edit" style="height:180px;"><textarea v-model="contents" ref="contents" title="내용" rows="10" cols="2" class="textarea_ty1"></textarea></td>
+					</tr>
+					
+				</tbody>
+			</table>
+			<div class="btn_center">
+            <button type="button" class="btn-line mr8" @click="fnList">취소</button>
+            <button type="button"  v-if="!seq" class="btn-default" @click="fnAddBoard">등록</button>
+        	<button type="button" v-if="seq" class="btn-default" @click="fnModBoard">완료</button>
+			</div>
+			</div>
+			</div>	
 </template>
 
 <script>
@@ -89,6 +89,10 @@ export default {
 				,option:''
 				,file_name:''
 			}
+			if(body.id==null){
+				alert("로그인에러")
+				return;
+			}
 			if(!this.title) { //제목이 없다면 값을 입력하라고 알려준다.
 				alert("제목을 입력해 주세요");
 				this.$refs.title.focus(); //방식으로 선택자를 찾는다.
@@ -101,20 +105,18 @@ export default {
 			}
 			if(!this.write_option) { //제목이 없다면 값을 입력하라고 알려준다.
 				alert("분류를 선택해 주세요");
-				console.log(this.write_option)
 				this.$refs.write_option.focus();//방식으로 선택자를 찾는다.
 				return;
 			}
 			var file_check=document.getElementById('file_input').value;
 			
-			console.log(file_check)
 			if(file_check){
 				var _fileLen = file_check.length;
 
 		     var _lastDot = file_check.lastIndexOf('.');
    			  var fileExt = file_check.substring(_lastDot, _fileLen).toLowerCase();
 				if(fileExt==".jpg"||fileExt==".jpeg"||fileExt==".png"||fileExt==".pdf"){
-				console.log("팔첵 O");
+				
 			var frm = new FormData(); 
 			var File = document.getElementById("file_input"); 
 			frm.append("file", File.files[0]); 
@@ -123,10 +125,6 @@ export default {
 			}) 
 			.then((res) => {
 				if(res.data.success){
-					console.log("???????")
-				  console.log(res.data.file_name)
-				  console.log(res.data.mimetype)
-				  console.log(typeof res.data.file_name)
 				//var file_name="C:/workspace/hodu/vue_project2/svr/uploads/"+res.data.file_name;
 				body.title=this.title
 				body.contents=this.contents
@@ -182,6 +180,11 @@ export default {
 			})
 		}
 		,fnModBoard() {
+			var check_log=localStorage.getItem("id")
+			if(check_log==null){
+				alert("로그인에러")
+				return;
+			}
 			if(!this.title) {
 				alert("제목을 입력해 주세요");
 				this.$refs.title.focus(); //방식으로 선택자를 찾는다.
@@ -230,6 +233,9 @@ components: {
 </script>
 
 <style scoped>
+
+@import '../assets/css/board.css'
+/*
 .listWrap{margin-left: 200px;margin-top:120px;top:50px;position: relative;}
 .listWrap_2{margin-left: 550px; text-align:left; }
 	.searchWrap{border:1px solid #DCDFE6; border-radius:5px; text-align:left; padding:20px 0; margin-bottom:40px;}
@@ -242,5 +248,5 @@ components: {
 	.tbList_input td.txt_left a{text-align:left; text-decoration:none; color:black;padding:1em; }
 	.tbList_input td.txt_cont{height:400px; vertical-align:top;}
 	.btnRightWrap {font-size:1em; color:black;}	
-	.div_for_table{margin-left:200px; width:1500px; margin-top:100px; height: 650px;}
+	.div_for_table{margin-left:200px; width:1500px; margin-top:100px; height: 650px;}*/
 </style>

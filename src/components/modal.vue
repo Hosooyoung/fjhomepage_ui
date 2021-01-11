@@ -1,6 +1,6 @@
 <template>
    <transition name="modal">
-    <div class="modal-mask">
+    <div class="modal-mask" >
       <div class="modal-wrapper">
         <div class="modal-container">
 
@@ -80,6 +80,8 @@ methods:{
 }
 
 .modal-container {
+  
+  text-align:center;
   width: 300px;
   margin: 0px auto;
   padding: 20px 30px;

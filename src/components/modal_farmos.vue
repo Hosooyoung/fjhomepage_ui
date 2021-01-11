@@ -26,15 +26,15 @@
               <input v-model="id" type="text" placeholder="Username" required />
               <input v-model="pw" type="password" placeholder="Password" required />
               <br>
-              <button type="submit" style="background-color:#409EFF;color:white;">
+              <button type="submit" class="btn-sm">
               로그인
              </button>
           </form>
-            <button style="background-color:#F56C6C;color:white; " @click="$emit('close')">
-                취소
+            <button class="btn-sm-red" @click="$emit('close')">
+              취소
               </button>
               <br>
-            <button style="background-color:white;color:black;border:1px solid black;" @click="mod_acc=1">
+            <button class="btn-line2-sm" @click="mod_acc=1">
             비밀번호 변경
             </button>  
           </div>
@@ -43,10 +43,10 @@
             <input v-model="id_check" type="text" placeholder="Username" required />
             <input v-model="pw_check" type="password" placeholder="Password" required />
             <br>
-             <button style="background-color:#F56C6C;color:white;border:1px solid black;" @click="check_pw">
+             <button class="btn-sm" @click="check_pw">
                 확인
             </button>
-            <button style="background-color:#F56C6C;color:white;border:1px solid black;" @click="$emit('close')">
+            <button class="btn-sm-red" @click="$emit('close')">
                 취소
             </button>
             </div>
@@ -56,10 +56,10 @@
             <p>변경 비밀번호 확인</p>
             <input v-model="pw_mod_check" type="password" placeholder="Password" required />
             <br>
-             <button style="background-color:#F56C6C;color:white;border:1px solid black;" @click="Mod_password">
+             <button class="btn-sm" @click="Mod_password">
                 변경
             </button>
-            <button style="background-color:#F56C6C;color:white;border:1px solid black;" @click="$emit('close')">
+            <button class="btn-sm-red" @click="$emit('close')">
                 취소
             </button>
             </div>
@@ -90,7 +90,6 @@ export default {
 },
 mounted() {
   this.mod_acc=0;
-  console.log("모엣"+this.mod_acc)
   this.cookieCheck()
 },
 methods:{/*
@@ -168,8 +167,6 @@ methods:{/*
           return;
           }
           try {
-                console.log(this.pw_check+"체겍");
-                console.log(this.serial);
               const res = await this.$http.post("/mod_pw", {
                 id:this.id_check,
                 pw: this.pw_mod,
@@ -200,8 +197,6 @@ methods:{/*
   }
 , async loginForm() {
             try {
-		console.log("id"+this.id);
-		console.log("pw"+this.pw);
               const result = await this.$http.post("/login", {
                 id: this.id,
                 pw: this.pw
@@ -255,6 +250,7 @@ methods:{/*
 }
 
 .modal-container {
+  text-align:center;
   width: 300px;
   height: 300px;
   margin: 0px auto;
@@ -306,5 +302,177 @@ methods:{/*
 .modal-leave-active .modal-container {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
+}
+
+button {
+    font-family: 'Nanum Gothic';
+    font-size: 0;
+    vertical-align: top;
+    border: 0;
+}
+
+.text-xs-right .btn-reset,
+.text-xs-right .btn-submit {
+    margin-left: 4px;
+}
+
+.btn-line {
+    min-width: 180px;
+    background: #fff;
+    height: 54px;
+    line-height: 30px;
+    color: #55bc7e;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 3px;
+    padding: 0 10px;
+    border: 1px solid #55bc7e
+}
+
+.btn-line2 {
+    min-width: 180px;
+    background: #fff;
+    height: 54px;
+    line-height: 30px;
+    color: #999999;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 3px;
+    padding: 0 10px;
+    border: 1px solid #999999
+}
+
+.btn-default {
+    min-width: 180px;
+    background: #55bc7e;
+    height: 54px;
+    line-height: 30px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 3px;
+    padding: 0 10px;
+}
+
+.btn-gray {
+    min-width: 180px;
+    background-color: #999999;
+    height: 54px;
+    line-height: 30px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 3px;
+    padding: 0 10px;
+}
+
+.btn-select {
+    background-color: #0082c9;
+    border-color: #006fab;
+    font-size: 16px;
+    font-weight: bold;
+    min-width: 138px;
+    color: #fff;
+    border-radius: 2px;
+}
+
+.btn-sm {
+    min-width: 28px;
+    background: #55bc7e;
+    height: 30px;
+    line-height: 26px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 3px;
+    padding: 0 15px;
+}
+.btn-line2-sm {
+    min-width: 28px;
+    background: #fff;
+    height: 30px;
+    line-height: 26px;
+    color: #999999;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 3px;
+    padding: 0 10px;
+    border: 1px solid #999999
+}
+
+.btn-sm-red {
+    min-width: 28px;
+    background: #F56C6C;
+    height: 30px;
+    line-height: 26px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 3px;
+    padding: 0 15px;
+}
+.btn-sm2 {
+    display: inline-block;
+    min-width: 28px;
+    height: 30px;
+    padding: 0 14px;
+    line-height: 26px;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    background: #fff;
+    color: #333333;
+    vertical-align: middle;
+    border-radius: 3px;
+    border: 1px solid #999999;
+}
+
+.btn-sm3 {
+    min-width: 30px;
+    background: #525863;
+    height: 35px;
+    line-height: 26px;
+    color: #fff;
+    font-size: 13px;
+    font-weight: bold;
+    border-radius: 3px;
+    padding: 0 20px;
+}
+
+.btn-sm4 {
+    display: inline-block;
+    min-width: 30px;
+    height: 30px;
+    padding: 0 10px;
+    line-height: 26px;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    background: #fff;
+    color: #55bc7e;
+    vertical-align: middle;
+    border-radius: 3px;
+    border: 1px solid #55bc7e;
+}
+
+.btn-sm5 {
+    display: inline-block;
+    min-width: 28px;
+    height: 30px;
+    padding: 0 10px;
+    line-height: 26px;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    background: #fff;
+    color: #aaaaaa;
+    vertical-align: middle;
+    border-radius: 3px;
+    border: 1px solid #aaaaaa;
+}
+
+.btn_center {
+    margin: 40px 0;
+    text-align: center;
 }
 </style>

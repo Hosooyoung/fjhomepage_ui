@@ -1,57 +1,50 @@
+
 <template>
-<div class="color">
-  <a href="/">
-  <img src="title.JPG" class="img_loc">
-  </a>
-  <div class="fj_nav">
-    <el-button type="text" size="default" @click="go_link('main')"><strong style="color:black">Main</strong></el-button>
-    <el-divider direction="vertical"></el-divider>
-  <el-button type="text" size="default" @click="go_link('info')"  ><strong style="color:black">공지사항</strong></el-button>
-  <el-divider direction="vertical"></el-divider>
-  <el-button type="text" size="default" @click="go_link('board')"><strong style="color:black">게시판</strong></el-button>
+
+<div id="header" class="body">
+  <div class="header-in">
+    <h1 id="logo"><a href="/" class=""></a></h1>
+    <div id="gnb">
+    <ul>
+        <li ><a href="/">Main</a></li>
+        <li><a href="/info" ><b>공지사항</b></a></li>
+        <li><a href="/board">게시판</a></li>
+      </ul>
+    </div>
   </div>
- <div class="login_loc">
+ 
  <div v-if="status==0">
-   <label for="id">ID</label>
-   <input type="id" id="id" v-model="user.userid" style="border:2px solid #33CC33">
-    <label for="password">Password</label>
-   <input type="password" id="password" v-model="user.password" style="border:2px solid #33CC33">
-  <el-button type="text" size="default" v-on:click="login" ><strong style="color:black">로그인</strong></el-button>
-   <el-divider direction="vertical"></el-divider>  
-	<el-button type="text" size="default" v-on:click="createAccount"><strong style="color:black">회원가입</strong></el-button> 
+   <div class="util">
+     <input type="text" title="아이디"  v-model="user.userid" class="inp_main mr8" style="width:150px;" placeholder="아이디">
+     <input type="password" title="비밀번호" v-model="user.password" class="inp_main mr20" style="width:150px;" placeholder="비밀번호">
+     <a href="javascript:;" v-on:click="login" class="login_btn mr8" >로그인</a><span class="d_mem"> | </span> <a style="font-weight:bold" href="javascript:;"  v-on:click="createAccount">회원가입</a> 
+     <!--button  v-on:click="login" style="margin-top:5px;font-size:1.3em;">로그인</button>
+     <span class="d_mem"> | </span> <button  style="margin-top:5px;font-size:1.3em;" class="mr8"  v-on:click="createAccount">회원가입</button-->
+       
   </div>
-  <div v-if="status==1" ref="status">
-  <a style="font-size:0.8em;margin-right:1em">{{user.userid}}</a>
-    <!--button @click="openModal">회원정보수정</button>
-    <modal @close="closeModal" v-if="modal">
-      <p>비밀번호확인</p>
-      <div><input v-model="modal_message"></div>
-      <template slot="footer">
-     <button @click="doSend">확인</button>
-      </template>
-    </modal--> 
-      <el-button type="text" size="default" v-on:click="data_flatform"><strong style="color:black">데이터 플랫폼</strong></el-button>
-       <el-divider direction="vertical"></el-divider>
-      <el-button type="text" size="default" id="show-modal_farmos" @click="showModal_farmos = true"><strong style="color:black">장비제어</strong></el-button>
-    <modal_farmos v-if="showModal_farmos" @close="showModal_farmos = false">
-    <h3 slot="header">장비제어</h3>
-    </modal_farmos>
-     <el-divider direction="vertical"></el-divider>
-      <el-button type="text" size="default" @click="calculate"><strong style="color:black text-decoration:none"><a href="http://59.30.85.18:64000/food" style="text-decoration:none;color:black;" onclick="window.open(this.href,'_blank','width=1600px,height=1200px,toolbars=yes,scrollbars=yes'); return false;">양액계산기</a></strong></el-button>
-    <!--button id="show-modal_cal" @click="showModal_Cal = true">양액계산기</button>
-      <modal_calculator v-if="showModal_Cal" @close="showModal_Cal = false">
-    <h3 slot="header">양액계산기</h3>
-    </modal_calculator-->
-     <el-divider direction="vertical"></el-divider>
-      <el-button type="text" size="default" id="show-modal" @click="showModal = true" ><strong style="color:black">회원정보수정</strong></el-button>
-  <modal v-if="showModal" @close="showModal = false">
-    <h3 slot="header">회원정보수정</h3>
-  </modal>
-   <el-divider direction="vertical"></el-divider>
-  <el-button  type="text" size="default" v-on:click="logout" ><strong style="color:black">로그아웃</strong></el-button>
-   <el-divider direction="vertical"></el-divider> 
-  <el-button type="text" size="default" @click="ShowMembers"  v-if="check_auth=='admin'" ref="check_auth"><strong style="color:black">회원관리</strong></el-button> 
-  </div>
+ </div>
+  <div v-if="status==1" ref="status" class="util">
+    
+  <a style="font-size:1em;margin-right:0.9em;">{{user.userid}}</a>
+  <span class="d_mem">|</span>
+      <a href="" class="login_btn mr8" v-on:click="data_flatform">데이터 플랫폼</a>
+      <span class="d_mem"> | </span>
+      <a href="javascript:;" class="login_btn mr8" id="show-modal_farmos" @click="showModal_farmos = true">장비제어</a>
+       <modal_farmos v-if="showModal_farmos" @close="showModal_farmos = false">
+        <h3 slot="header">장비제어</h3>
+        </modal_farmos>
+      <span class="d_mem"> | </span>
+      <a href="javascript:;" class="login_btn mr8" v-on:click="caculate" >양액계산기</a>
+      <span class="d_mem"> | </span>
+      <a href="javascript:;" class="login_btn mr8" id="show-modal" @click="showModal = true" >회원정보수정</a>
+       <modal v-if="showModal" @close="showModal = false">
+        <h3 slot="header">회원정보수정</h3>
+        </modal>
+      <span class="d_mem"> | </span>
+      <a href="javascript:;" class="login_btn mr8" v-on:click="logout" >로그아웃</a>
+      <span class="d_mem"> | </span> 
+      <a href="javascript:;" class="login_btn mr12" @click="ShowMembers"  v-if="check_auth=='admin'" ref="check_auth">회원관리</a>
+      
   </div>
 </div>
 </template>
@@ -92,7 +85,7 @@ methods: {
       user: this.user
     })
     .then((res) => {  //로그인 성공
-        if (res.data.success == true) {
+         if (res.data.success == true) {
           if(res.data.auth==2){
             alert("휴면회원입니다.관리자에게 문의하세요.");
             return;
@@ -112,9 +105,9 @@ methods: {
           }
           localStorage.setItem("id" ,this.user.userid);
           localStorage.setItem("auth" ,this.check_auth);
-          this.user.userid=localStorage.getItem("id")+"님, 환영합니다.";
+          this.user.userid=localStorage.getItem("id");
            this.status=1;
-          alert(this.user.userid);   
+          alert(this.user.userid+"님,환영합니다.");   
         this.$router.go();
         }
       else
@@ -135,7 +128,7 @@ methods: {
   },
   check_login: function(){
     if(this.check_id!=null&&this.check_auth!=null){
-    this.user.userid=this.check_id+"님, 환영합니다.";
+    this.user.userid=this.check_id;
     this.status=1;
     }
   },
@@ -153,7 +146,7 @@ methods: {
     alert("서비스 준비중입니다.");
   },
   caculate:function(){
-    window.open("http://59.30.85.18:64000/food","Food Jukebox-Nutrient Caculator","width=1000,height=900")
+    window.open("/calculator", "양액계산기", "width=1800px, height=700, toolbar=yes, menubar=yes, scrollbars=yes, resizable=yes" );
   },
   go_link:function(where){
     if(where=="main"){
@@ -175,9 +168,422 @@ components:{
 }
 }
 </script>
-<style scoped>
-  .login_loc{position: absolute;top:10px;right:200px;background-color: white;}
-  .fj_nav{top:15px;left:450px;font-size:1.5em;position: absolute;}
-  .img_loc{position: absolute;left:100px;}
-  .color{background-color: white;position: fixed; border-bottom:3px solid #33CC33; width:100%; height: 71px; margin-top:-60px!important;z-index: 3;}
+<style>
+
+@charset "utf-8";
+
+ @font-face {
+    font-family: 'Nanum Gothic';
+    font-style: normal;
+    font-weight: 600;
+    src: url('../assets/fonts/NanumGothic.eot');
+    src: url('../assets/fonts/NanumGothic.eot?#iefix') format('embedded-opentype'), url('../assets/fonts/NanumGothic.woff') format('woff'), url('../assets/fonts/NanumGothic.ttf') format('truetype'),url('../assets/fonts/NanumGothic.woff2') format('woff2'); 
+}
+
+@font-face {
+    font-family: 'Nanum Gothic';
+    font-style: normal;
+    font-weight: 800;
+    src: url('../assets/fonts/NanumGothic-Bold.eot');
+    src: url('../assets/fonts/NanumGothic-Bold.eot?#iefix') format('embedded-opentype'),url('../assets/fonts/NanumGothic-Bold.woff') format('woff'), url('../assets/fonts/NanumGothic-Bold.ttf') format('truetype'), url('../assets/fonts/NanumGothic-Bold.woff2') format('woff2');
+}
+
+
+
+@font-face {
+    font-family: 'ntk';
+    font-weight: normal;
+    font-style: normal;
+    src: url("../assets/fonts/notokr-regular.eot");
+    src: url("../assets/fonts/notokr-regular.eot?#iefix") format('embedded-opentype'),
+     url("../assets/fonts/notokr-regular.woff") format('woff'),
+     url("../assets/fonts/notokr-regular.woff2") format('woff2');
+    
+}
+
+
+
+body {
+    position: relative;
+    padding: 0;
+    font-size: 16px;
+    font-weight: 400;
+    font-family: 'ntk', 'Nanum Gothic', '나눔고딕', "돋움", dotum, sans-serif;
+}
+
+body,
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+code,
+form,
+fieldset,
+legend,
+textarea,
+p,
+blockquote,
+th,
+td,
+input,
+select,
+textarea,
+button {
+    margin: 0;
+    padding: 0
+}
+
+img,
+fieldset,
+iframe {
+    border: 0 none
+}
+
+dl,
+ul,
+ol,
+menu,
+li {
+    list-style: none
+}
+
+blockquote,
+q {
+    quotes: none
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none
+}
+
+article,
+aside,
+footer,
+header,
+hgroup,
+nav,
+section,
+menu {
+    display: block;
+    padding: 0;
+    margin: 0;
+}
+
+img,
+input,
+button,
+select,
+textarea {
+    vertical-align: middle;
+}
+
+button {
+    overflow: visible;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: 0;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    table-layout: fixed;
+    word-wrap: break-word;
+}
+
+label {
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+    font-weight: normal;
+    margin: 0;
+}
+
+caption {
+    position: static;
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    padding: 0;
+}
+
+hr,
+legend,
+caption {
+    overflow: hidden;
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+    height: 0;
+    font-size: 0;
+    line-height: 0;
+    padding: 0;
+}
+
+em,
+i,
+address {
+    font-style: normal;
+}
+
+a,
+a:link,
+a:visited {
+    color: #222222;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #339966;
+    text-decoration: underline;
+    text-decoration: none;
+}
+
+a:active {
+    color: #006600;
+    text-decoration: none;
+}
+
+
+.wrap,
+#header,
+#container,
+#contents,
+#footer {
+    position: relative;
+}
+
+html,
+body,
+.wrap {
+    height: 100%;
+    width: 100%;
+}
+
+
+#header {
+    top:-5px;
+    position: fixed;
+    margin: 0 auto;
+    width: 100%;
+    z-index: 100;
+    height: 90px;
+    background: #fff;
+    border-bottom: 1px solid #e1e1e1
+}
+
+#header .header-in {
+    position: relative;
+    width: 1280px;
+    margin: 0 auto
+}
+
+#header #logo {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    width: 224px;
+    height: 24px;
+    z-index: 10;
+    background: url('../assets/img/logo.png') no-repeat 0 0;
+    font-size: 0;
+    line-height: 0;
+}
+
+#header #logo a {
+    display: block;
+    height: 100%;
+}
+
+.login_btn {
+  font-weight: 800 !important;
+}
+#gnb {
+    position: relative;
+    width: 100%;
+    padding: 0;
+    height: 84px;
+}
+
+#gnb>ul {
+    padding: 24px 0 0 260px;
+}
+
+#gnb>ul:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+#gnb>ul>li {
+    position: relative;
+    display: inline-block;
+    height: 100%;
+    vertical-align: top;
+}
+
+#gnb>ul>li>a {
+    position: relative;
+    display: inline-block;
+    padding: 0 28px 0;
+    height: 41px;
+    line-height: 41px;
+    font-size: 18px;
+    color: #000;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    vertical-align: top;
+}
+
+#gnb>ul>li>a:hover,
+#gnb>ul>li.active a {
+    text-decoration: none;
+    color: #55bc7e;
+}
+
+#header .util {
+    position: absolute;
+    right: 80px;
+    top: 28px;
+    text-align: right;
+    height: 19px;
+    width: 750px;
+    float: left
+}
+
+#header .util {
+    display: inline-block;
+    font-size: 14px;
+}
+
+#header .util a {
+    font-size: 15px;
+    color: #333;
+    font-weight: bold;
+}
+
+#header .util .d_mem {
+    display: inline-block;
+    width: 1px;
+    height: 14px;
+    content: '';
+    background: #c6c6c6;
+    vertical-align: 10px;
+    margin: 0 12px 0 9px;
+    font-size: 0;
+}
+
+
+button {
+    font-family: 'ntk';
+    font-size: 0;
+    vertical-align: top;
+    border: 0;
+}
+
+
+
+
+
+a.link_ty1 {
+    color: #0066cc;
+    text-decoration: underline;
+}
+
+
+
+.mt0 {
+    margin-top: 0px !important;
+}
+
+.mt10 {
+    margin-top: 10px !important;
+}
+
+.mt20 {
+    margin-top: 20px !important;
+}
+
+.mt70 {
+    margin-top: 70px !important;
+}
+
+.mr5 {
+    margin-right: 5px !important;
+}
+
+.mr8 {
+    margin-right: 8px !important;
+}
+
+.mr10 {
+    margin-right: 10px !important;
+}
+
+.mr20 {
+    margin-right: 20px !important;
+}
+
+.mr30 {
+    margin-right: 30px !important;
+}
+.mr200 {
+    margin-right: 200px !important;
+}
+
+
+.ml20 {
+    margin-left: 20px !important;
+}
+
+.ml30 {
+    margin-left: 30px !important;
+}
+
+.ml40 {
+    margin-left: 40px !important;
+}
+
+.mb30 {
+    margin-bottom: 30px !important;
+}
+
+.mb60 {
+    margin-bottom: 70px !important;
+}
+
+
+.inp_main {
+    display: inline-block;
+    width: 100%;
+    min-width: auto;
+    border: 2px solid #55bc7e;
+    line-height: 30px;
+    height: 33px;
+    color: #333;
+    font-size: 13px;
+    padding: 0 6px;
+    vertical-align: middle;
+    border-radius: 3px;
+    box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.1);
+}
+
 </style>

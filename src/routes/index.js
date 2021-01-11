@@ -12,7 +12,7 @@ import infowrite from '@/components/infowrite'
 import inforead from '@/components/inforead'
 import infosearch from '@/components/infosearch'
 import members from '@/components/Members'
-
+import calculator from '@/components/Calculator'
 Vue.use(Router)
 
 
@@ -74,6 +74,12 @@ export const router = new Router({
             path: '/members',
             name: 'members',
             component: members
+        },
+        {
+            path: '/calculator',
+            name: 'calculator',
+            component: calculator
         }
+
     ]
 })
