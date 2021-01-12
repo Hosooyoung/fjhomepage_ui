@@ -23,14 +23,14 @@
             <slot name="footer">
             <div v-if="mod_acc==0">
             <form @submit.prevent="loginForm">
-              <input v-model="id" type="text" placeholder="Username" required />
-              <input v-model="pw" type="password" placeholder="Password" required />
+              <input class="inp_main mb8" v-model="id" type="text" placeholder="Username" required />
+              <input class="inp_main mb8" v-model="pw" type="password" placeholder="Password" required />
               <br>
-              <button type="submit" class="btn-sm">
+              <button type="submit" class="btn-line">
               로그인
              </button>
           </form>
-            <button class="btn-sm-red" @click="$emit('close')">
+            <button class="btn-line2" @click="$emit('close')">
               취소
               </button>
               <br>
@@ -39,27 +39,27 @@
             </button>  
           </div>
             <div v-if="mod_acc==1">
-            <p>계정 확인</p>
-            <input v-model="id_check" type="text" placeholder="Username" required />
-            <input v-model="pw_check" type="password" placeholder="Password" required />
+            <p>fjbox계정 확인</p>
+            <input v-model="id_check" type="text" class="inp_main mb8 mt8" placeholder="Username" required />
+            <input v-model="pw_check" type="password" class="inp_main mb8" placeholder="Password" required />
             <br>
-             <button class="btn-sm" @click="check_pw">
+             <button class="btn-line1" @click="check_pw">
                 확인
             </button>
-            <button class="btn-sm-red" @click="$emit('close')">
+            <button class="btn-line2" @click="$emit('close')">
                 취소
             </button>
             </div>
             <div v-if="mod_acc==2">
             <p>변경 비밀번호 </p>
-            <input v-model="pw_mod" type="text" placeholder="Password" required />
+            <input v-model="pw_mod" type="text" placeholder="Password" class="inp_main mb8 mt8" required />
             <p>변경 비밀번호 확인</p>
-            <input v-model="pw_mod_check" type="password" placeholder="Password" required />
+            <input v-model="pw_mod_check" type="password" placeholder="Password" class="inp_main mb8 mt8" required />
             <br>
-             <button class="btn-sm" @click="Mod_password">
+             <button class="btn-line1" @click="Mod_password">
                 변경
             </button>
-            <button class="btn-sm-red" @click="$emit('close')">
+            <button class="btn-line2" @click="$emit('close')">
                 취소
             </button>
             </div>
@@ -252,7 +252,7 @@ methods:{/*
 .modal-container {
   text-align:center;
   width: 300px;
-  height: 300px;
+  height: 250px;
   margin: 0px auto;
   padding: 20px 30px;
   background-color: #fff;
@@ -290,6 +290,20 @@ methods:{/*
  * these styles.
  */
 
+.inp_main {
+    display: inline-block;
+    width: 50%;
+    min-width: auto;
+    border: 2px solid #55bc7e;
+    line-height: 30px;
+    height: 30px;
+    color: #333;
+    font-size: 13px;
+    padding: 0 6px;
+    vertical-align: middle;
+    border-radius: 3px;
+    box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.1);
+}
 .modal-enter {
   opacity: 0;
 }
@@ -315,33 +329,59 @@ button {
 .text-xs-right .btn-submit {
     margin-left: 4px;
 }
-
 .btn-line {
-    min-width: 180px;
+    min-width: 50px;
     background: #fff;
-    height: 54px;
+    height: 28px ;
+    margin-left:75px;
+    margin-right: 8px;
+    margin-top: 8px;
     line-height: 30px;
     color: #55bc7e;
     font-size: 16px;
     font-weight: bold;
     border-radius: 3px;
     padding: 0 10px;
-    border: 1px solid #55bc7e
+    border: 1px solid #55bc7e;
+    float: left;
+}
+.btn-line1 {
+    min-width: 65px;
+    background: #fff;
+    height: 28px ;
+    margin-left:75px;
+    margin-right: 8px;
+    margin-top: 8px;
+    line-height: 30px;
+    color: #55bc7e;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 3px;
+    padding: 0 10px;
+    border: 1px solid #55bc7e;
+    float: left;
 }
 
 .btn-line2 {
-    min-width: 180px;
+  margin-top: 8px;
+    min-width: 65px;
     background: #fff;
-    height: 54px;
+    height: 28px;
     line-height: 30px;
     color: #999999;
     font-size: 16px;
     font-weight: bold;
     border-radius: 3px;
     padding: 0 10px;
+    margin-right: 65px;
     border: 1px solid #999999
 }
-
+.mb8 {
+  margin-bottom: 8px;
+}
+.mt8 {
+  margin-top: 8px;
+}
 .btn-default {
     min-width: 180px;
     background: #55bc7e;
@@ -391,13 +431,15 @@ button {
     min-width: 28px;
     background: #fff;
     height: 30px;
+    margin-top:10px;
     line-height: 26px;
-    color: #999999;
+    color: black;
     font-size: 14px;
     font-weight: bold;
     border-radius: 3px;
     padding: 0 10px;
-    border: 1px solid #999999
+    text-decoration: underline;
+    text-underline-position: under;
 }
 
 .btn-sm-red {
@@ -475,4 +517,5 @@ button {
     margin: 40px 0;
     text-align: center;
 }
+
 </style>

@@ -39,6 +39,32 @@ body {
     font-family: 'Nanum Gothic', '나눔고딕', "돋움", dotum, sans-serif;
 }
 
+.btn-line_big {
+    min-width: 180px;
+    background: #fff;
+    height: 54px;
+    line-height: 30px;
+    color: #55bc7e;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 3px;
+    padding: 0 10px;
+    border: 1px solid #55bc7e
+}
+
+.btn-line2_big {
+    min-width: 180px;
+    background: #fff;
+    height: 54px;
+    line-height: 30px;
+    color: #999999;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 3px;
+    padding: 0 10px;
+    border: 1px solid #999999
+}
+
 body,
 div,
 dl,
@@ -256,7 +282,6 @@ body,
 /* contents */
 
 .contents {
-    top: 90px;
     position: relative;
     width: 1200px;
     padding: 0 0 100px;
@@ -305,15 +330,14 @@ button {
 }
 
 .btn-line {
-    min-width: 180px;
+    min-width: 80px;
     background: #fff;
-    height: 54px;
-    line-height: 30px;
+    height: 44px;
+    line-height: 18px;
     color: #55bc7e;
-    font-size: 16px;
+    font-size: 13px;
     font-weight: bold;
     border-radius: 3px;
-    padding: 0 10px;
     border: 1px solid #55bc7e
 }
 

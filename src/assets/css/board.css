@@ -259,7 +259,6 @@ body,
 .contents {
     position: relative;
     width: 1200px;
-    top: 90px;
     padding: 0 0 100px;
     margin: 0 auto;
 }
@@ -552,6 +551,32 @@ a.link_ty1 {
     border-radius: 2px;
 }
 
+.btn-line_big {
+    min-width: 180px;
+    background: #fff;
+    height: 54px;
+    line-height: 30px;
+    color: #55bc7e;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 3px;
+    padding: 0 10px;
+    border: 1px solid #55bc7e
+}
+
+.btn-line2_big {
+    min-width: 180px;
+    background: #fff;
+    height: 54px;
+    line-height: 30px;
+    color: #999999;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 3px;
+    padding: 0 10px;
+    border: 1px solid #999999
+}
+
 .inp_ty2[disabled] {
     background: #f3f3f3;
     color: #999;
@@ -595,19 +620,21 @@ a.link_ty1 {
 .sel_ty2 {
     border: 1px solid #cccccc;
     padding: 3px 0 0;
-    font-size: 14px;
+    font-size: 16px;
     color: #333;
-    line-height: 26px;
-    height: 26px;
+    line-height: 33px;
+    height: 33px !important;
+    border-radius: 2px;
 }
 
 .sel_ty3 {
     border: 1px solid #cccccc;
     padding: 2px 0 0;
-    font-size: 14px;
+    font-size: 16px;
     color: #333;
     line-height: 33px;
-    height: 33px;
+    height: 33px !important;
+    border-radius: 2px;
 }
 
 .check_ty1[type="checkbox"] {
@@ -616,7 +643,7 @@ a.link_ty1 {
 }
 
 .textarea_ty1 {
-    width: 97%;
+    width: 97% !important;
     border: 1px solid #cccccc;
     line-height: 33px;
     color: #333;

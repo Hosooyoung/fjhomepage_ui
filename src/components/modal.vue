@@ -17,14 +17,14 @@
 
           <div class="modal-footer">
             <slot name="footer">
-               <input type="password" id="password" v-model="password">
+               <input class="inp_main" type="password" id="password" v-model="password" />
                <br>
-              <el-button type="primary" size="mini" @click="check_password">
+              <button class="btn-line" @click="check_password">
                 확인
-              </el-button>
-              <el-button type="danger" size="mini" @click="$emit('close')">
+              </button>
+              <button class="btn-line2" @click="$emit('close')">
                 취소
-              </el-button>
+              </button>
             </slot>
           </div>
         </div>
@@ -82,9 +82,10 @@ methods:{
 .modal-container {
   
   text-align:center;
-  width: 300px;
+  width: 250px;
   margin: 0px auto;
   padding: 20px 30px;
+  height:150px;
   background-color: #fff;
   border-radius: 15px;
   border:3px solid #33CC33;;
@@ -100,9 +101,12 @@ methods:{
 
 .modal-body {
   margin: 20px 0;
+  height: 20px;
   font-weight: bold;
 }
-
+.modal-footer{
+  height: 100px;
+}
 .modal-default-button {
   float: right;
 }
@@ -124,6 +128,48 @@ methods:{
   opacity: 0;
 }
 
+.inp_main {
+    display: inline-block;
+    width: 50%;
+    min-width: auto;
+    border: 2px solid #55bc7e;
+    line-height: 30px;
+    height: 30px;
+    color: #333;
+    font-size: 13px;
+    padding: 0 6px;
+    vertical-align: middle;
+    border-radius: 3px;
+    box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.1);
+}
+.btn-line {
+    min-width: 50px;
+    background: #fff;
+    height: 28px ;
+    margin-right: 8px;
+    margin-top: 8px;
+    line-height: 30px;
+    color: #55bc7e;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 3px;
+    padding: 0 10px;
+    border: 1px solid #55bc7e
+}
+
+.btn-line2 {
+  margin-top: 8px;
+    min-width: 50px;
+    background: #fff;
+    height: 28px;
+    line-height: 30px;
+    color: #999999;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 3px;
+    padding: 0 10px;
+    border: 1px solid #999999
+}
 .modal-enter .modal-container,
 .modal-leave-active .modal-container {
   -webkit-transform: scale(1.1);

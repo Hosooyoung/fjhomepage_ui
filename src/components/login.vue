@@ -7,7 +7,7 @@
     <div id="gnb">
     <ul>
         <li ><a href="/">Main</a></li>
-        <li><a href="/info" ><b>공지사항</b></a></li>
+        <li><a href="/info" >공지사항</a></li>
         <li><a href="/board">게시판</a></li>
       </ul>
     </div>
@@ -25,7 +25,7 @@
  </div>
   <div v-if="status==1" ref="status" class="util">
     
-  <a style="font-size:1em;margin-right:0.9em;">{{user.userid}}</a>
+  <a style="font-size:12px;margin-right:0.9em;">{{user.userid}}</a>
   <span class="d_mem">|</span>
       <a href="" class="login_btn mr8" v-on:click="data_flatform">데이터 플랫폼</a>
       <span class="d_mem"> | </span>
@@ -42,8 +42,8 @@
         </modal>
       <span class="d_mem"> | </span>
       <a href="javascript:;" class="login_btn mr8" v-on:click="logout" >로그아웃</a>
-      <span class="d_mem"> | </span> 
-      <a href="javascript:;" class="login_btn mr12" @click="ShowMembers"  v-if="check_auth=='admin'" ref="check_auth">회원관리</a>
+      <span class="d_mem" v-if="check_auth=='admin'"> | </span> 
+      <a href="javascript:;" class="login_btn" @click="ShowMembers"  v-if="check_auth=='admin'" ref="check_auth">회원관리</a>
       
   </div>
 </div>
@@ -424,7 +424,7 @@ body,
 }
 
 #gnb>ul {
-    padding: 24px 0 0 260px;
+    padding: 24px 0 0 240px;
 }
 
 #gnb>ul:after {
@@ -443,7 +443,7 @@ body,
 #gnb>ul>li>a {
     position: relative;
     display: inline-block;
-    padding: 0 28px 0;
+    padding: 0 10px 0;
     height: 41px;
     line-height: 41px;
     font-size: 18px;
@@ -461,8 +461,8 @@ body,
 
 #header .util {
     position: absolute;
-    right: 80px;
-    top: 28px;
+    right: 320px;
+    top: 35px;
     text-align: right;
     height: 19px;
     width: 750px;
@@ -475,7 +475,7 @@ body,
 }
 
 #header .util a {
-    font-size: 15px;
+    font-size: 13px;
     color: #333;
     font-weight: bold;
 }
@@ -487,7 +487,7 @@ body,
     content: '';
     background: #c6c6c6;
     vertical-align: 10px;
-    margin: 0 12px 0 9px;
+    margin: 0 12px 0 5px;
     font-size: 0;
 }
 

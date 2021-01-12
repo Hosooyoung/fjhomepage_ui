@@ -5,11 +5,12 @@
 	<h3 class="tit">공지사항</h3>
 	<div class="search">
 					<legend>게시글 검색</legend>
-					<select  v-model="search.option" class="sel_ty1">
+					<select  v-model="search.option" class="sel_ty2 mr8">
+						<option disabled value="">옵션선택</option>
 						<option value="제목">제목</option>
 						<option value="내용">내용</option>
 					</select>
-					<input type="text" v-model="search.contents" ref="search.contents" class="inp_ty2" style="width:398px;" />
+					<input type="text" v-model="search.contents" ref="search.contents" class="inp_ty2 mr8" style="width:398px;" />
 					<button  @click="fnSearch" class="btn-sm3">검색</button>
 			</div>
 			<table class="tbl_board mt30" summary="번호, 제목, 등록일, 작성자의 공지사항 목록 입니다.">

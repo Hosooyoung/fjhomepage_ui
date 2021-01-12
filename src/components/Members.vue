@@ -5,7 +5,7 @@
 	  <h3 class="tit">회원신청목록</h3>
 			<legend>회원신청목록</legend>
 					<div class="search mt40">
-					<select title="검색항목 선택" class="sel_ty1" v-model="join_search.option">
+					<select title="검색항목 선택" class="sel_ty2 mr8" v-model="join_search.option">
 						<option disabled value="">옵션선택</option>
 						<option>아이디</option>
 						<option>이름</option>
@@ -14,8 +14,8 @@
 						<option>이메일</option>
 						<option>장비</option>
 					</select>
-					<input type="text" class="inp_ty2" title="검색어" style="width:398px;" v-model="join_search.contents" ref="join_search.contents"/>
-					<button  class="btn-sm3"  @click="fnjoin_Search">조회</button>
+					<input type="text" class="inp_ty2 mr8" title="검색어" style="width:398px;" v-model="join_search.contents" ref="join_search.contents"/>
+					<button  class="btn-sm3 mr8"  @click="fnjoin_Search">조회</button>
 					<button  class="btn-sm3" @click="join_redirection" v-if="join_show_all==true">신청목록 전체보기</button>
 				
 				</div>
@@ -48,7 +48,7 @@
 								<td>{{row.phone}}</td>
 								<td>{{row.email}}</td>
 								<td>{{row.user_device}}</td>
-                    			<td>
+                    			<td style="text-align:center;">
 									<button  @click="Getjoin(row.id,1)" v-if="row.user_auth==4" class="btn-sm mr8">Y</button>
 									<button @click="Getjoin(row.id,2)" v-if="row.user_auth==4" class="btn-sm2">N</button>
                      			</td>
@@ -72,7 +72,7 @@
 				<h3 class="tit">회원목록</h3>
 					<legend>회원목록</legend>
 					<div class="search mt40">
-					<select title="검색항목 선택" class="sel_ty1" v-model="search.option">
+					<select title="검색항목 선택" class="sel_ty2 mr8" v-model="search.option">
 						<option disabled value="">옵션선택</option>
 						<option>아이디</option>
 						<option>이름</option>
@@ -81,7 +81,7 @@
 						<option>이메일</option>
 						<option>장비</option>
 					</select>
-					<input type="text" class="inp_ty2" title="검색어" style="width:398px;" v-model="search.contents" ref="search.contents"/>
+					<input type="text" class="inp_ty2 mr8" title="검색어" style="width:398px;" v-model="search.contents" ref="search.contents"/>
 					<button  class="btn-sm3 mr8"  @click="fnSearch">조회</button>
 					<button  class="btn-sm3"  @click="redirection" v-if="show_all==true">전체목록 보기</button>
 					</div>
@@ -91,9 +91,10 @@
 							<col style="width:100px" />
 							<col style="width:auto" />
 							<col style="width:140px" />
-							<col style="width:250px" />
-							<col style="width:120px" />
-							<col style="width:160px" />
+							<col style="width:240px" />
+							<col style="width:110px" />
+							<col style="width:100px" />
+							<col style="width:100px" />
 						</colgroup>
 						<thead>
 							<tr>
@@ -103,12 +104,14 @@
 								<th>전화번호</th>
 								<th>이메일주소</th>
 								<th>장비 소유</th>
-								<th>비고</th>
+								<th>계정 상태</th>
+								<th>관리</th>
 							</tr>
 						</thead>
 						<tbody>
+							
 							<tr v-for="(row, idx) in list" :key="idx">
-								<td>{{row.id}}</td>
+								<td style="text-align:center">{{row.id}}</td>
 								<td>{{row.user_name}}</td>
 								<td>{{row.user_group}}</td>
 								<td>{{row.phone}}</td>
@@ -116,11 +119,13 @@
 								<td>{{row.user_device}}</td>
                     			<td>
 									<p v-if="row.user_auth==0">활동회원</p>
-                    				<p v-if="row.user_auth==2">휴면회원</p>
-                    				<p v-if="row.user_auth==1">관리자계정</p>
-                   					<p v-if="row.user_auth==4">가입승인대기</p>
-									<button  @click="reset_pw(row.id)" class="btn-sm mr8">P.W 초기화</button>
+                    				<p v-if="row.user_auth==2">휴면</p>
+                    				<p v-if="row.user_auth==1">관리자</p>
+                   					<p v-if="row.user_auth==4">가입신청</p>
                      			</td>
+								 <td>
+									 <button  @click="reset_pw(row.id)" class="btn-line">비밀번호<br>초기화</button>
+								 </td>
 							</tr>
 						</tbody>
 					</table>				
@@ -210,6 +215,7 @@ export default {
 				if(res.data.success) {
 					this.list = res.data.list;
 					for(var i in this.list){
+						this.list[i].phone=this.phoneFomatter(this.list[i].phone,1)
 						if(this.list[i].last_login==null){
 							this.list[i].last_login==""
 						}
@@ -235,9 +241,12 @@ export default {
 			this.$http.get('/users/getJoinList',{params:this.join_body})
 			.then((res)=>{
 				if(res.data.success) {
+					for(var i in this.join_list){
+						this.join_list[i].phone =this.phoneFomatter(this.join_list[i].phone,1)
 					this.join_list = res.data.join_list;
 					this.join_paging = res.data.join_paging;
 					this.join_no = this.join_paging.totalCount - ((this.join_paging.page-1) * this.join_paging.ipp);
+					}
 				} else {
 					alert("실행중 실패했습니다.\n다시 이용해 주세요.");
 				}
@@ -305,6 +314,7 @@ export default {
 				if(res.data.success) {
 					this.list = res.data.list;
 					for(var i in this.list){
+						this.list[i].phone=this.phoneFomatter(this.list[i].phone,1)
 						if(this.list[i].last_login==null){
 							this.list[i].last_login==""
 						}
@@ -345,6 +355,9 @@ export default {
 				this.$http.get('/users/getSearchjoinList'+this.join_search.contents,{params:this.join_body})
 			.then((res)=>{
 				if(res.data.success) {
+					for(var i in this.join_list){
+						this.join_list[i].phone=this.phoneFomatter(this.join_list[i].phone,1)
+					}
 					this.join_list = res.data.join_list;
 					this.join_paging = res.data.join_paging;
 					this.join_no = this.join_paging.totalCount - ((this.join_paging.page-1) * this.join_paging.ipp);
@@ -382,7 +395,40 @@ export default {
 			.catch((err)=>{
 				console.log(err);
 			})	
-		}             
+		},
+		 phoneFomatter:function(num,type){
+ 		   var formatNum = '';
+   		 	if(num.length==11){
+       		if(type==0){
+            	formatNum = num.replace(/(\d{3})(\d{4})(\d{4})/, '$1-****-$3');
+        	}else{
+            	formatNum = num.replace(/(\d{3})(\d{4})(\d{4})/, '$1-$2-$3');
+        	}
+    		}else if(num.length==8){
+        		formatNum = num.replace(/(\d{4})(\d{4})/, '$1-$2');
+    		}else{
+        	if(num.indexOf('02')==0){
+            if(type==0){
+                formatNum = num.replace(/(\d{2})(\d{4})(\d{4})/, '$1-****-$3');
+            }else{
+                formatNum = num.replace(/(\d{2})(\d{4})(\d{4})/, '$1-$2-$3');
+            }
+        	}else{
+            	if(type==0){
+                formatNum = num.replace(/(\d{3})(\d{3})(\d{4})/, '$1-***-$3');
+            }else{
+                formatNum = num.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
+            }
+        	}
+	}
+	console.log("입력 num")
+	console.log(num)
+	console.log("출력 Fnum")
+	console.log(formatNum)
+    return formatNum;
+	  }
+
+             
 }
 ,components: {
     login

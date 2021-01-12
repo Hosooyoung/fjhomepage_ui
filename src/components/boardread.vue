@@ -35,7 +35,7 @@
 					</table>
 					<div class="btn_center">
 				<button type="button" class="btn-line2 mr8" @click="fnDel"> Q&A 삭제</button>
-				<button type="button" class="btn-line mr8" @click="fnMod">Q&A 수정</button>
+				<button type="button" class="btn-line_big mr8" @click="fnMod">Q&A 수정</button>
 				<button type="button" class="btn-default"  @click="fnList" >목록</button>
 			</div> 
 					<table class="tbl_board_view" summary="공지사항 글내용 보기 및 관리자 답변 게시판입니다">

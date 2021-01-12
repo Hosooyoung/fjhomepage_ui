@@ -14,6 +14,7 @@
 						<th scope="col" class="first">분류</th>
 							<td class="first">
 							<select  v-model="write_option" ref="write_option" class="sel_ty1">
+								<option disabled value="">옵션선택</option>
 								<option value="공지사항">공지사항</option>
 								<option value="업데이트">업데이트</option>
   								<option value="매뉴얼">매뉴얼</option>
@@ -43,7 +44,7 @@
 				</tbody>
 			</table>
 		<div class="btn_center">
-            <button type="button" class="btn-line mr8" @click="fnList">취소</button>
+            <button type="button" class="btn-line_big mr8" @click="fnList">취소</button>
             <button type="button"  v-if="!seq" class="btn-default" @click="fnAddNoti">등록</button>
         	<button type="button" v-if="seq" class="btn-default" @click="fnModNoti">완료</button>
 		</div>
