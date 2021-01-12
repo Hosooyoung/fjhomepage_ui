@@ -15,9 +15,7 @@
 							<td class="first">
 							<select v-model="write_option" ref="write_option" class="sel_ty1">
 								<option disabled value="">옵션선택</option>
-						
-								<option value="공지사항">공지사항</option>
-								<option value="업데이트">업데이트</option>
+								<option value="제품(장비)">제품(장비)</option>
   								<option value="매뉴얼">매뉴얼</option>
   								<option value="기타">기타</option>
 							</select>

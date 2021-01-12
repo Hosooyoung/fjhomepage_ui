@@ -99,7 +99,7 @@
 						<button  class="btn-default mr8"  v-on:click="createAccount" v-if="status=='join'">회원가입</button>
 						<button  class="btn-default mr8"  v-on:click="modAccount" v-if="status=='mod'">정보수정</button>
 						<button  class="btn-default mr8" v-on:click="delAccount" v-if="status=='mod'">회원탈퇴</button>
-            <button  class="btn-line" v-on: @click="$router.go(-1)">취소</button>
+            <button  class="btn-line_big" v-on: @click="$router.go(-1)">취소</button>
             
           </div>
 			
