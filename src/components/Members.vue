@@ -42,12 +42,12 @@
 						</thead>
 						<tbody>
 							<tr v-for="(row, idx) in join_list" :key="idx">
-								<td>{{row.id}}</td>
-								<td>{{row.user_name}}</td>
+								<td style="text-align:center;">{{row.id}}</td>
+								<td style="text-align:center;">{{row.user_name}}</td>
 								<td>{{row.user_group}}</td>
-								<td>{{row.phone}}</td>
+								<td style="text-align:center;">{{row.phone}}</td>
 								<td>{{row.email}}</td>
-								<td>{{row.user_device}}</td>
+								<td style="text-align:center;">{{row.user_device}}</td>
                     			<td style="text-align:center;">
 									<button  @click="Getjoin(row.id,1)" v-if="row.user_auth==4" class="btn-sm mr8">Y</button>
 									<button @click="Getjoin(row.id,2)" v-if="row.user_auth==4" class="btn-sm2">N</button>
@@ -112,11 +112,11 @@
 							
 							<tr v-for="(row, idx) in list" :key="idx">
 								<td style="text-align:center">{{row.id}}</td>
-								<td>{{row.user_name}}</td>
+								<td style="text-align:center;">{{row.user_name}}</td>
 								<td>{{row.user_group}}</td>
-								<td>{{row.phone}}</td>
+								<td style="text-align:center;">{{row.phone}}</td>
 								<td>{{row.email}}</td>
-								<td>{{row.user_device}}</td>
+								<td style="text-align:center;">{{row.user_device}}</td>
                     			<td>
 									<p v-if="row.user_auth==0">활동회원</p>
                     				<p v-if="row.user_auth==2">휴면</p>

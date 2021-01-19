@@ -1,30 +1,48 @@
 <template>
-    <div v-loading="loading" class="main">
-    
+    <div class="main">
           <div class="modal-body">
             <br>
+            <div style="border-bottom:4px solid #55bc7e;">
+            <h4 style="font-size:2.2em; margin-left:10%;font-weight:bold;" >양액계산기</h4>
+            </div>
             <br>
-            <p style="font-size:2em;font-weight:bold;border-bottom:2px solid #DCDFE6;" >양액계산기</p>
+            <div style="margin-left:10%;">
+            <h4 style="font-size:0.8em;font-weight:bold">계산방법을 선택해주세요.</h4>
             <br>
-            <h style="font-size:1em;">계산방법을 선택해주세요.</h>
-            <br>
-            <br>
-            <button class="btn-line mr8" @click="select_category(1)">양분 비율 자동 탐색</button>
-            <button class="btn-line" @click="select_category(2)">양분 조제 가능 영역 선택</button>
+            <el-button-group>
+            <el-button type="success"  @click="select_category(1)" >양분 비율 자동 탐색</el-button>
+            <el-button type="success"  @click="select_category(2)" >양분 조제 가능 영역 선택</el-button>
+            </el-button-group>
+            </div>
              </div>
             
           <div class="modal-footer">
+            
             <div v-if="option==1" id="auto_search">
-                <h>
-                 <strong style="font-size:1.3em;">Step1 : 전기전도도(EC) 및 용량 입력</strong>
+              <h4 class="step_tit">양분 비율 자동 탐색</h4>
+            <br>
+            <div class="steps_body">
+            <el-steps :active="active_1" finish-status="success" class="step_body">
+              <el-step title="Step 1" description="전기전도도 및 용량입력"></el-step>
+              <el-step title="Step 2" description="양이온 및 음이온 비율입력"></el-step>
+              <el-step title="Step 3" description="계산 결과"></el-step>
+              </el-steps>
+            </div>  
+              <br>
+              <el-card v-if="active_1==0" style="margin-left:7%; width:1400px;">
+                <div class="card_in">
+                 <strong>Step1 : 전기전도도(EC) 및 용량 입력</strong>
+                  </div>
+                  <br>
+                  <div class="card_tit">
+                <h4>
+                전기전도도(EC)란 전하를 운반할 수 있는 정도를 나타내는 물리량으로 양액의 전이온농도 측정에 사용될 수 있습니다.
+                <br>전이온농도는 양액 내 존재하는 모든 이온농도의 합을 의미합니다.
+                 <br>전기전도도가 증가하면 양액의 전 이온농도도 증가합니다.
+                 </h4>
+                 </div>
                  <br>
-                 <br>
-                 전기전도도(EC)란 전하를 운반할 수 있는 정도를 나타내는 물리량으로 양액의 전이온농도 측정에 사용될 수 있습니다. 전이온농도는 양액 내 존재하는 모든 이온농도의 합을 의미합니다.<br>
-                 전기전도도가 증가하면 양액의 전 이온농도도 증가합니다.
-                 </h>
-                 <br>
-                 <br>
-                 <table style="margin-left:20px">
+                 <table  style=" margin-left:50px;border-spacing:10px;border-collapse:separate;">
                   <tr>
                 <td style="width:500px;"> <label for="ec" style="font-size:0.8em;font-weight:bold">조재하고자 하는 양액의 전기전도도를 입력하세요.(0~4.5mS/cm)</label></td>
                 <td><label for="liter" style="font-size:0.8em;font-weight:bold">조재하고자하는 양액의 부피를 입력해주세요.(L)</label></td>
@@ -33,17 +51,24 @@
                     <td><input class="inp_main" type="text" v-model="ec" id="ec" style="width:430px"/> 
                     </td>
                     <td>
-                      <input class="inp_main" type="text" id="liter" v-model="liter" style="width:310px"/>
+                      <input class="inp_main" type="text" id="liter" v-model="liter" style="width:430px"/>
                     </td>
                   </tr>
                  </table>
-                
+                 
+                 <button  style="margin-top:60px;margin-left:45%;margin-right:auto;" class="btn-sm" @click="next_1()">입력완료</button>
+              </el-card>
+             
+                <el-card v-if="active_1==1" style="margin-left:7%; width:1400px;" v-loading="loading" >
+                  <div class="card_in">
+                <strong>Step2 : 양이온 및 음이온 비율 입력</strong>
+                  </div>
                 <br>
-                <strong style="font-size:1.3em;">Step2 : 양이온 및 음이온 비율 입력</strong>
                 <br>
-                <br>
-                <p>[양이온] 조재를 원하는 칼륨(K),칼슘(Ca), 마그네슘(Mg) 양분의 비율(%)을 입력해주세요.
-                총합은 100(%)이어야합니다.</p>
+                <div class="card_tit">
+                <h4>[양이온] 조재를 원하는 칼륨(K),칼슘(Ca), 마그네슘(Mg) 양분의 비율(%)을 입력해주세요.
+                총합은 100(%)이어야합니다.</h4>
+                </div>
                 <table class="table_for_input">
                 <tr>
                   <td style="width:300px;">
@@ -68,8 +93,11 @@
                 </td>
                 </tr>
                 </table>
-                <p>[음이온] 조재를 원하는 질소(NO3),인(H2PO4), 황(SO4) 양분의 비율(%)을 입력해주세요.
-                총합은 100(%)이어야합니다.</p>
+                <br>
+                <div class="card_tit">
+                <h4>[음이온] 조재를 원하는 질소(NO3),인(H2PO4), 황(SO4) 양분의 비율(%)을 입력해주세요.
+                총합은 100(%)이어야합니다.</h4>
+                </div>
                 <table class="table_for_input">
                     <tr>
                       <td style="width:300px;">
@@ -94,18 +122,33 @@
                       </td>
                     </tr>
                 </table>
-                <button class="btn-line" style="margin-left:25px;" @click="calc_option_1()">목표 및 가능 제조값 계산</button>
+                <button  class="btn-sm" style="margin-left:40%;margin-top:60px;" @click="calc_option_1()">목표 및 가능 제조값 계산</button>
+                </el-card>
+           
+                <div class="result">
+                <el-card v-show="active_1==3" style="margin-left:7%; width:1420px;">
+                <div class="card_in">          
+                <strong>계산 결과</strong>
+                </div>
+                <div class="card_tit">
                 <br>
-                <strong v-if="calc_cat_ok=='OK'" style="font-size:1.3em">계산 결과</strong>
-                <p v-if="calc_cat_ok=='OK'">{{calc_cat_ratio}}</p>
-                <div v-if="calc_ani_ok=='OK'"><p>{{calc_ani_ratio}}</p>
+                <h4>{{calc_cat_ratio}}</h4>
                 <br>
-                <table style="width:1650px">
+                <br>
+                <h4>{{calc_ani_ratio}}</h4>
+                <br>
+                <br>
+                <h4>목표 EC 및 부피값 : {{ec}}mS/cm, {{liter}}L</h4>
+                <br>
+                <br> 
+                <table style="width:1300px">
                     <tr>
-                      <td style="width:550px">
-                    <p style="font-weight:bold">양액 조제표(단위 :mM)</p>
+                      <td style="width:430px">
+                    
+                    <h4 class="res_title">양액 조제표(단위 :mM)</h4>
+                    
                   <table class="table_for_res" >
-                  <tr>
+                  <tr class="res_table_title">
                       <td>KNO3</td>
                       <td>KH2PO4</td>
                       <td>K2SO4</td>
@@ -121,10 +164,11 @@
                   </tr>
                   </table>
                       </td>
-                      <td style="width:550px">
-                <p style="font-weight:bold">양액 조제표(단위 :mg/L)</p>
+                      <tr style="width:430px">
+                        <br><br>
+                <h4 class="res_title">양액 조제표(단위 :mg/L)</h4>
                    <table class="table_for_res">
-                  <tr>
+                  <tr class="res_table_title">
                       <td>KNO3</td>
                       <td>KH2PO4</td>
                       <td>K2SO4</td>
@@ -139,11 +183,13 @@
                       <td>{{result_liter.MgSO4}}</td>
                   </tr>
                   </table>
-                      </td>
-                      <td style="width:550px">
-                  <p style="font-weight:bold">양액 조제표(단위 :mg)</p>
+                      </tr>
+                      
+                      <tr style="width:430px;margin-top:20px;">
+                        <br><br>
+                  <h4 class="res_title">양액 조제표(단위 :mg)</h4>
                      <table class="table_for_res">
-                  <tr>
+                  <tr class="res_table_title">
                       <td>KNO3</td>
                       <td>KH2PO4</td>
                       <td>K2SO4</td>
@@ -158,73 +204,105 @@
                       <td>{{result_mg.MgSO4}}</td>
                   </tr>
                   </table>
-                      </td>
-                    </tr>
+                      </tr>
                     
                 </table>     
+                
+                </div>
                 <br>
-                <br>                              
-                  <div id='1_Div_cat' style="float:left;"></div>
-                 <div id='1_Div_ani' style="float:left;"></div>
-                 </div>
+                <br>
+                <div style="width:1410px;">               
+                  <div id='1_Div_cat' style="display:inline-block;"></div>
+                 <div id='1_Div_ani' style="display:inline-block;"></div>
+                </div>
+                <br>
+                <br>
+              <button class="btn-line" style="margin-left:45%;margin-right:auto;"  @click="reset()">
+              새로 계산하기
+              </button>
+                </el-card>
+            </div>
             </div>
             <!--p>
-            
-            여기부터 2번 메뉴시작
-            
+               조제가능 영역 메뉴시작
             </p-->
             <div v-if="option==2" id="select_area">
-            <h>
-            <strong style="font-size:1.3em;">Step1 : 계산할 조제 영역의 이온 선택</strong>
+              <h4 class="step_tit">양분 조제 가능 영역 선택</h4>
+              <br>
+            <div class="steps_body">
+            <el-steps :active="active_2" finish-status="success" class="step_body">
+              <el-step title="Step 1" description="조제영역 이온선택"></el-step>
+              <el-step title="Step 2" description="조제 가능 영역 확인"></el-step>
+              <el-step title="Step 3" description="이온비,전기전도도 및 용량입력"></el-step>
+              <el-step title="Step 4" description="계산 결과"></el-step>
+              </el-steps>
+            </div>
             <br>
+            <el-card v-if="active_2==0" style="margin-left:7%; width:1400px;">
+            <div class="card_in">
+            <strong>Step1 : 계산할 조제 영역의 이온 선택</strong>
+            </div>
             <br>
-            양분조제 가능 영역을 선택하셨습니다. 양이온과 음이온 그룹 중 하나를 선택하여 목표 비율을 입력합니다. 입력한 비율에 따라 나머지 이온그룹의 조성 가능 범위가 제시됩니다.
-            </h>
+            <div class="card_tit">
+            <h4>
+            양분조제 가능 영역을 선택하셨습니다. 양이온과 음이온 그룹 중 하나를 선택하여 목표 비율을 입력합니다. 
+            <br>입력한 비율에 따라 나머지 이온그룹의 조성 가능 범위가 제시됩니다.
+            </h4>
+            </div>
             <br>
-            <br>
-            <button class="btn-line mr8" @click="select_category(3)">양이온 목표비율입력</button>
+            <button class="btn-line mr12" style="margin-left:4%;"  @click="select_category(3)">양이온 목표비율입력</button>
             <button class="btn-line" @click="select_category(4)">음이온 목표비율입력</button>
-            <br>
-            <br>
-            <div v-if="select_option==1">
-                <strong style="font-size:1.3em;">Step2 : 목표 양이온비를 통한 조제 가능 음이온 영역 확인</strong>
-                <br>
-                <br>
-                <p>[양이온] 조재를 원하는 칼륨(K),칼슘(Ca), 마그네슘(Mg) 양분의 비율(%)을 입력해주세요.
-                총합은 100(%)이어야합니다.</p>
-                <table class="table_for_input">
-                <tr>
-                  <td style="width:300px;">
-                <label for="kalum" style="font-weight:bold;font-size:0.8em">양이온:칼륨(K)</label>
-                  </td>
-                   <td style="width:300px;">
-                <label for="calsum" style="font-weight:bold">양이온:칼슘(Ca)</label>
-                  </td>
-                   <td style="width:300px;">
-                     <label for="magnesum" style="font-weight:bold">양이온:마그네슘(Mg)</label>
-                  </td>
-                </tr>
-                <tr >
-                  <td>
-                <input class="inp_main mr8" type="text" id="kalum" v-model="kalum">
-                  </td>
-                   <td>
-                <input class="inp_main mr8" type="text" id="calsum" v-model="calsum">
-                  </td>
-                   <td>
-                     <input class="inp_main" type="text" id="magnesum" v-model="magnesum" readonly placeholder="K,Ca에 맞춰 자동계산됨">
-                </td>
-                </tr>
-                </table>
-                    <button style="margin-left:25px;" class="btn-line" @click="before_range(1)">음이온 영역 출력</button>
-                    <br>
+            </el-card>
+            <el-card v-if="select_option==1&&active_2==1" style="margin-left:7%;width:1400px;">
+                <div class="card_in">
+                  <strong >Step2 : 목표 양이온비를 통한 조제 가능 음이온 영역 확인</strong>
                 </div>
-                <div v-if="select_option==2">
-                  <strong style="font-size:1.3em;">Step2 : 목표 음이온비를 통한 조제 가능 양이온 영역 확인</strong>
+                <br>
+                <br>
+                <div class="card_tit">
+                  <h4>[양이온] 조재를 원하는 칼륨(K),칼슘(Ca), 마그네슘(Mg) 양분의 비율(%)을 입력해주세요.
+                  총합은 100(%)이어야합니다.</h4>
+                </div>
+                <br>
+                <table class="table_for_input">
+                  <tr>
+                   <td style="width:300px;">
+                     <label for="kalum" style="font-weight:bold;font-size:0.8em">양이온:칼륨(K)</label>
+                   </td>
+                   <td style="width:300px;">
+                     <label for="calsum" style="font-weight:bold">양이온:칼슘(Ca)</label>
+                   </td>
+                   <td style="width:300px;">
+                      <label for="magnesum" style="font-weight:bold">양이온:마그네슘(Mg)</label>
+                   </td>
+                  </tr>
+                  <tr>
+                   <td>
+                      <input class="inp_main mr8" type="text" id="kalum" v-model="kalum">
+                   </td>
+                   <td>
+                       <input class="inp_main mr8" type="text" id="calsum" v-model="calsum">
+                   </td>
+                    <td>
+                       <input class="inp_main" type="text" id="magnesum" v-model="magnesum" readonly placeholder="K,Ca에 맞춰 자동계산됨">
+                    </td>
+                  </tr>
+                </table>
+                <br>
+                <button style="margin-left:45%;margin-top:60px;" class="btn-sm" @click="before_range(1)">음이온 영역 출력</button>
+                </el-card>
+           
+                <el-card v-if="select_option==2&&active_2==1" style="margin-left:7%;widrth:1400px;">
+                  <div class="card_in">
+                    <strong>Step2 : 목표 음이온비를 통한 조제 가능 양이온 영역 확인</strong>
+                  </div>
                     <br>
                     <br>
-                    <p>[음이온] 조재를 원하는 질소(NO3),인(H2PO4), 황(SO4) 양분의 비율(%)을 입력해주세요.
-                총합은 100(%)이어야합니다.</p>
+                  <div class="card_tit">
+                    <h4>[음이온] 조재를 원하는 질소(NO3),인(H2PO4), 황(SO4) 양분의 비율(%)을 입력해주세요.
+                총합은 100(%)이어야합니다.</h4>
+                  </div>
+                  <br>
                 <table class="table_for_input">
                     <tr>
                       <td style="width:300px;">
@@ -249,28 +327,41 @@
                       </td>
                     </tr>
                 </table>
-                    <button style="margin-left:25px;" class="btn-line" @click="before_range(2)">양이온 영역 출력</button>
                     <br>
-                    </div>
+                    <button style="margin-left:45%;margin-top:60px;" class="btn-sm" @click="before_range(2)">양이온 영역 출력</button>
+                    <br>
+                </el-card>
+         
+
+
+
+
+
+
                     <!--p>
             
                      여기부터 2번 메뉴종료, 영역 플롯 표시
             
                      </p-->
-                    <div id="Div_area"></div>
-                <div v-if="select_option_2==true&&select_option==1">
-                  <strong style="font-size:1.3em;">Step3 : 목표 음이온 비,전기전도도(EC) 및 용량을 입력해 양액계산</strong>
+
+
+
+
+                <el-card v-show="select_option_2==true&&select_option==1&&active_2==2" style="margin-left:7%;width:1400px;" v-loading="loading">
+                <div class="card_in">   
+                  <strong>Step3 : 목표 음이온 비,전기전도도(EC) 및 용량을 입력해 양액계산</strong>
+                </div>
+                  <br>
+                <div id="Div_area_1"></div>
                 <br>
-                <br>
-                <p>위의 삼각도 그래프에서 조제를 원하는 지점의 값을 참고하여 음이온 조제 비율과 전기전도도(EC)를 입력해주세요.
-                </p>
-                <h>
-                 전기전도도(EC)란 전하를 운반할 수 있는 정도를 나타내는 물리량으로 양액의 전이온농도 측정에 사용될 수 있습니다. 전이온농도는 양액 내 존재하는 모든 이온농도의 합을 의미합니다.<br>
-                 전기전도도가 증가하면 양액의 전 이온농도도 증가합니다.
-                 </h>
+                <div class="card_tit">
+                <h4>위의 삼각도 그래프에서 조제를 원하는 지점의 값을 참고하여 음이온 조제 비율과 전기전도도(EC)를 입력해주세요.
+                 <br>전기전도도(EC)란 전하를 운반할 수 있는 정도를 나타내는 물리량으로 양액의 전이온농도 측정에 사용될 수 있습니다. 
+                 <br>전이온농도는 양액 내 존재하는 모든 이온농도의 합을 의미합니다. 전기전도도가 증가하면 양액의 전 이온농도도 증가합니다.
+                 </h4>
+                </div>
                  <br>
-                 <br>
-                 <table style="margin-left:20px">
+                 <table style="margin-left:50px;border-spacing:10px;border-collapse:separate;">
                   <tr>
                 <td style="width:500px;"> <label for="ec" style="font-size:0.8em;font-weight:bold">조재하고자 하는 양액의 전기전도도를 입력하세요.(0~4.5mS/cm)</label></td>
                 <td><label for="liter" style="font-size:0.8em;font-weight:bold">조재하고자하는 양액의 부피를 입력해주세요.(L)</label></td>
@@ -279,14 +370,16 @@
                     <td><input class="inp_main" type="text" v-model="ec" id="ec" style="width:430px"/> 
                     </td>
                     <td>
-                      <input class="inp_main" type="text" id="liter" v-model="liter" style="width:310px"/>
+                      <input class="inp_main" type="text" id="liter" v-model="liter" style="width:430px"/>
                     </td>
                   </tr>
                  </table>
                 <br>
                 <br>
-                 <p>[음이온] 조재를 원하는 질소(NO3),인(H2PO4), 황(SO4) 양분의 비율(%)을 입력해주세요.
-                총합은 100(%)이어야합니다.</p>
+                <div class="card_tit">
+                 <h4>[음이온] 조재를 원하는 질소(NO3),인(H2PO4), 황(SO4) 양분의 비율(%)을 입력해주세요.
+                총합은 100(%)이어야합니다.</h4>
+                </div>
                  <table class="table_for_input">
                     <tr>
                       <td style="width:300px;">
@@ -311,100 +404,28 @@
                       </td>
                     </tr>
                 </table>
-                <button class="btn-line" style="margin-left:25px;" @click="calc_option_1()">목표 및 가능 제조값 계산</button>
+                <button class="btn-sm" style="margin-top:60px; margin-left:45%;margin-right:auto;" @click="calc_option_1()">목표 및 가능 제조값 계산</button>
                 <br>
-                <strong v-if="calc_cat_ok=='OK'" style="font-size:1.3em">계산 결과</strong>
-                <p v-if="calc_cat_ok=='OK'">{{calc_cat_ratio}}</p>
-                <div v-if="calc_cat_ok=='OK'"><p>{{calc_ani_ratio}}</p>
-                <br>
-                   <table style="width:1650px">
-                    <tr>
-                      <td style="width:550px">
-                    <p style="font-weight:bold">양액 조제표(단위 :mM)</p>
-                  <table class="table_for_res" >
-                  <tr>
-                      <td>KNO3</td>
-                      <td>KH2PO4</td>
-                      <td>K2SO4</td>
-                      <td>Ca(NO3)2</td>
-                      <td>MgSO4</td>
-                  </tr>
-                  <tr>
-                      <td>{{result.KNO3}}</td>
-                      <td>{{result.KH2PO4}}</td>
-                      <td>{{result.K2SO4}}</td>
-                      <td>{{result.Ca_NO3_2}}</td>
-                      <td>{{result.MgSO4}}</td>
-                  </tr>
-                  </table>
-                      </td>
-                      <td style="width:550px">
-                <p style="font-weight:bold">양액 조제표(단위 :mg/L)</p>
-                   <table class="table_for_res">
-                  <tr>
-                      <td>KNO3</td>
-                      <td>KH2PO4</td>
-                      <td>K2SO4</td>
-                      <td>Ca(NO3)2</td>
-                      <td>MgSO4</td>
-                  </tr>
-                  <tr>
-                      <td>{{result_liter.KNO3}}</td>
-                      <td>{{result_liter.KH2PO4}}</td>
-                      <td>{{result_liter.K2SO4}}</td>
-                      <td>{{result_liter.Ca_NO3_2}}</td>
-                      <td>{{result_liter.MgSO4}}</td>
-                  </tr>
-                  </table>
-                      </td>
-                      <td style="width:550px">
-                  <p style="font-weight:bold">양액 조제표(단위 :mg)</p>
-                     <table class="table_for_res">
-                  <tr>
-                      <td>KNO3</td>
-                      <td>KH2PO4</td>
-                      <td>K2SO4</td>
-                      <td>Ca(NO3)2</td>
-                      <td>MgSO4</td>
-                  </tr>
-                  <tr>
-                      <td>{{result_mg.KNO3}}</td>
-                      <td>{{result_mg.KH2PO4}}</td>
-                      <td>{{result_mg.K2SO4}}</td>
-                      <td>{{result_mg.Ca_NO3_2}}</td>
-                      <td>{{result_mg.MgSO4}}</td>
-                  </tr>
-                  </table>
-                      </td>
-                    </tr>
-                    
-                </table>     
-                <br>
-                <br>                                  
-                  <div id='1_Div_cat' style="float:left;"></div>
-                 <div id='1_Div_ani' style="float:left;"></div>
-                
-                </div> 
-                </div>
-                 <!--p>
+                </el-card>
             
-                     여기부터 2번 1번선택시 두번쨰 종료,2번 2번선택시 ㅅ ㅣ작
-            
-                     </p--> 
-               
-                <div v-if="select_option_2==true&&select_option==2">
-                  <strong style="font-size:1.3em;">Step3 : 목표 양이온 비,전기전도도(EC) 및 용량을 입력해 양액계산</strong>
-                <br>
-                <br>
-                <p>위의 삼각도 그래프에서 조제를 원하는 지점의 값을 참고하여 양이온 조제 비율과 전기전도도(EC)를 입력해주세요.
-                </p>
-                <h>
-                 전기전도도(EC)란 전하를 운반할 수 있는 정도를 나타내는 물리량으로 양액의 전이온농도 측정에 사용될 수 있습니다. 전이온농도는 양액 내 존재하는 모든 이온농도의 합을 의미합니다.<br>
-                 전기전도도가 증가하면 양액의 전 이온농도도 증가합니다.
-                 </h>
+                <!--p>
+                    여기부터 2번 1번선택시 두번쨰 종료,2번 2번선택시 ㅅ ㅣ작
+                </p--> 
+                <el-card v-show="select_option_2==true&&select_option==2&&active_2==2" style="margin-left:7%;width:1400px;" v-loading="loading">
+                  <div class="card_in">
+                    <strong>Step3 : 목표 양이온 비,전기전도도(EC) 및 용량을 입력해 양액계산</strong>
+                  </div>
+                  <br>
+                  <div id="Div_area_2"></div>
+                  <br>
+                  <div class="card_tit">
+                <h4>위의 삼각도 그래프에서 조제를 원하는 지점의 값을 참고하여 양이온 조제 비율과 전기전도도(EC)를 입력해주세요.
+                 <br>전기전도도(EC)란 전하를 운반할 수 있는 정도를 나타내는 물리량으로 양액의 전이온농도 측정에 사용될 수 있습니다. 
+                 <br>전이온농도는 양액 내 존재하는 모든 이온농도의 합을 의미합니다. 전기전도도가 증가하면 양액의 전 이온농도도 증가합니다.
+                 </h4>
+                  </div>
                  <br>
-                 <br>
-                 <table style="margin-left:20px">
+                 <table style="margin-left:50px;border-spacing:10px;border-collapse:separate;">
                   <tr>
                 <td style="width:500px;"> <label for="ec" style="font-size:0.8em;font-weight:bold">조재하고자 하는 양액의 전기전도도를 입력하세요.(0~4.5mS/cm)</label></td>
                 <td><label for="liter" style="font-size:0.8em;font-weight:bold">조재하고자하는 양액의 부피를 입력해주세요.(L)</label></td>
@@ -413,14 +434,16 @@
                     <td><input class="inp_main" type="text" v-model="ec" id="ec" style="width:430px"/> 
                     </td>
                     <td>
-                      <input class="inp_main" type="text" id="liter" v-model="liter" style="width:310px"/>
+                      <input class="inp_main" type="text" id="liter" v-model="liter" style="width:430px"/>
                     </td>
                   </tr>
                  </table>
                 <br>
                 <br>
-                 <p>[양이온] 조재를 원하는 칼륨(K),칼슘(Ca), 마그네슘(Mg) 양분의 비율(%)을 입력해주세요.
-                총합은 100(%)이어야합니다.</p>
+                <div class="card_tit">
+                 <h4>[양이온] 조재를 원하는 칼륨(K),칼슘(Ca), 마그네슘(Mg) 양분의 비율(%)을 입력해주세요.
+                총합은 100(%)이어야합니다.</h4>
+                </div>
                  <table class="table_for_input">
                 <tr>
                   <td style="width:300px;">
@@ -445,19 +468,34 @@
                 </td>
                 </tr>
                 </table>
-                <button class="btn-line" style="margin-left:25px;" @click="calc_option_1()">목표 및 가능 제조값 계산</button>
+                <br>
+                <button class="btn-sm" style="margin-top:60px; margin-left:45%;margin-rgiht:auto;" @click="calc_option_1()">목표 및 가능 제조값 계산</button>
+                </el-card>
+               
+                <div class="result">
+                <el-card v-show="select_option_2==true&&active_2==4" style="margin-left:7%;width:1400px;">
+                <div class="card_in">
+                <strong>계산 결과</strong>
+                </div>
+                <div class="card_tit">
+                <br>
+                <h4>{{calc_cat_ratio}}</h4>
                 <br>
                 <br>
-                <strong v-if="calc_cat_ok=='OK'" style="font-size:1.3em">계산 결과</strong>
-                <p v-if="calc_cat_ok=='OK'">{{calc_cat_ratio}}</p>
-                <div v-if="calc_cat_ok=='OK'"><p>{{calc_ani_ratio}}</p>
+                <h4>{{calc_ani_ratio}}</h4>
                 <br>
-                   <table style="width:1650px">
+                <br>
+                <h4>목표 EC 및 부피값 : {{ec}}mS/cm, {{liter}}L</h4>
+                <br>
+                <br> 
+                <table style="width:1300px">
                     <tr>
-                      <td style="width:550px">
-                    <p style="font-weight:bold">양액 조제표(단위 :mM)</p>
+                      <td style="width:430px">
+                    
+                    <h4 class="res_title">양액 조제표(단위 :mM)</h4>
+                    
                   <table class="table_for_res" >
-                  <tr>
+                  <tr class="res_table_title">
                       <td>KNO3</td>
                       <td>KH2PO4</td>
                       <td>K2SO4</td>
@@ -473,10 +511,11 @@
                   </tr>
                   </table>
                       </td>
-                      <td style="width:550px">
-                <p style="font-weight:bold">양액 조제표(단위 :mg/L)</p>
+                      <tr style="width:430px">
+                        <br><br>
+                <h4 class="res_title">양액 조제표(단위 :mg/L)</h4>
                    <table class="table_for_res">
-                  <tr>
+                  <tr class="res_table_title">
                       <td>KNO3</td>
                       <td>KH2PO4</td>
                       <td>K2SO4</td>
@@ -491,11 +530,13 @@
                       <td>{{result_liter.MgSO4}}</td>
                   </tr>
                   </table>
-                      </td>
-                      <td style="width:550px">
-                  <p style="font-weight:bold">양액 조제표(단위 :mg)</p>
+                      </tr>
+                      
+                      <tr style="width:430px;margin-top:20px;">
+                        <br><br>
+                  <h4 class="res_title">양액 조제표(단위 :mg)</h4>
                      <table class="table_for_res">
-                  <tr>
+                  <tr class="res_table_title">
                       <td>KNO3</td>
                       <td>KH2PO4</td>
                       <td>K2SO4</td>
@@ -510,22 +551,24 @@
                       <td>{{result_mg.MgSO4}}</td>
                   </tr>
                   </table>
-                      </td>
-                    </tr>
-                    
-                </table>     
-                <br>
-                <br>                                
-                  <div id='1_Div_cat' style="float:left;"></div>
-                 <div id='1_Div_ani' style="float:left;"></div>
+                      </tr>                    
+                </table>                     
                 </div>
-            </div>
-            </div>
-          
-          </div>
-              <button class="btn-line" v-if="show_new==true" @click="reset()">
+                <br>
+                <br>
+                <div style="width:1410px;">               
+                  <div id='1_Div_cat' style="display:inline-block;"></div>
+                 <div id='1_Div_ani' style="display:inline-block;"></div>
+                </div>
+                <br>
+                <br>
+              <button class="btn-line" style="margin-left:45%;margin-right:auto;"  @click="reset()">
               새로 계산하기
               </button>
+              </el-card>
+              </div>
+          </div>
+          </div>
         </div>
 </template>
 <script>
@@ -535,6 +578,9 @@ import {round} from 'mathjs'
 export default {
     data: function () {
   return {
+    active_1:0,
+    active_2:0,
+    area:'',
     loading:false,
     option:0,
     select_option:0,
@@ -602,9 +648,27 @@ export default {
     ,
     mounted(){
     },
-    methods:{
+    methods:{ 
+      next_1() {
+        var temp_ec=Number(this.ec)
+        if(this.ec==''||this.liter==''){
+          alert("EC와 liter값을 입력해주세요.")
+          return;
+      }
+      if(temp_ec<0.5||temp_ec>4.5){
+        alert("EC값은 0.5~4.5사이를 입력해야합니다.")
+        return;
+      }
+        this.active_1=this.active_1+1;
+        if (this.activ_1++ > 2) this.active_1 = 0;
+        
+      },
+      ////////////////////////버튼클릭에 따른 데이터 값 초기화
     select_category:function(sel){
         this.show_new=false
+        this.area=''
+        this.active_2=0
+        this.active_1=0
         this.ec=''
         this.liter=''
         this.kalum=''
@@ -632,22 +696,38 @@ export default {
         this.result_mg.Ca_NO3_2=''
         this.result_mg.K2SO4=''
         this.result_mg.MgSO4=''
+      if(this.select_option_2==true&&this.select_option==1){
+        Plotly.purge('Div_area_1')
+      }
+      if(this.select_option_2==true&&this.select_option==2){
+        Plotly.purge('Div_area_2')
+      }
       if(sel==1){
           this.option=1
+          this.active_1=0
           this.select_option=0
           this.select_option_2=false
+          
         }
       else if(sel==2){
           this.option=2
+          this.active_2=0
           this.select_option=0
           this.select_option_2=false
       }
-      else if(sel==3)
+      else if(sel==3){
+          this.active_2=1
           this.select_option=1
-      else if(sel==4)
+      }
+      else if(sel==4){
+          this.active_2=1
           this.select_option=2
+      }
     },
+
+    /////////////////100% 합산 자동계산 및 파이썬 실행하는 함수 실행 //////////////////
     async calc_option_1(){
+      
       var mg;
       var so;
       
@@ -655,35 +735,45 @@ export default {
       var temp_b=Number(this.calsum);
       var temp_c=Number(this.jilso);
       var temp_d=Number(this.inn);
-      var temp_ec=Number(this.ec)
-      if(this.ec==''||this.liter==''){
-        alert("EC와 liter값을 입력해주세요.")
-        return;
+      var temp_ec=Number(this.ec);
+      if(this.option==2){
+        if(this.ec==''||this.liter==''){
+          alert("EC와 liter값을 입력해주세요.")
+          return;
       }
       if(temp_ec<0.5||temp_ec>4.5){
         alert("EC값은 0.5~4.5사이를 입력해야합니다.")
         return;
       }
-      if(temp_a+temp_b<100&&temp_a+temp_b>0&&temp_a>0&&temp_b){
+      }
+      if(temp_a+temp_b<100&&temp_a+temp_b>0&&temp_a>0&&temp_b>0){
           mg=100-(temp_a+temp_b);
           this.magnesum=mg;
-          this.calc_cat_ok="OK"
           this.calc_cat_ratio="목표 양이온 계산값: K="+temp_a+"% Ca="+temp_b+"% Mg="+mg+"%" 
         }
         else{
+          if(this.option==1){
+            this.active_1==1
+          }else if(this.option==2){
+            this.active_2==2
+          }
           alert("유효한 양이온비를 입력해주세요.")
           return;
         }
         if(temp_c+temp_d<100&&temp_c+temp_d>0&&temp_c>0&&temp_d>0){
             so=100-(temp_c+temp_d);
             this.whang=so;
-            this.calc_ani_ok="OK"
             this.calc_ani_ratio="목표 음이온 계산값: NO3="+temp_c+"% H2PO4="+temp_d+"% SO4="+so+"%" 
             
         }
         else{
-              alert("유효한 음이온비를 입력해주세요.");
-              return;
+          if(this.option==1){
+              this.active_1==1
+          }else if(this.option==2){
+              this.active_2==2
+          }
+          alert("유효한 음이온비를 입력해주세요.");
+          return;
         }
         var body={
               ec:this.ec,
@@ -694,15 +784,18 @@ export default {
               h2po4:this.inn,
               so4:this.whang
         }
-
         this.req_minimize(body);
     },
+    ///////////////////양액범위계산
     before_range:function(range_option){
+      
+      
       if(range_option==1){
+        this.area='Div_area_1'
         var mg;
         var temp_a=Number(this.kalum);
         var temp_b=Number(this.calsum);
-       if(temp_a+temp_b<100&&temp_a+temp_b>0&&temp_a>0&&temp_b){
+       if(temp_a+temp_b<100&&temp_a+temp_b>0&&temp_a>0&&temp_b>0){
           mg=100-(temp_a+temp_b);
           this.magnesum=mg;
           this.calc_cat_ok="OK"
@@ -722,14 +815,17 @@ export default {
             this.area_data_ani.able[2].B=0
             this.area_data_ani.able[2].C=Number(this.kalum)+Number(this.magnesum)
             this.draw_area(this.area_data_ani,this.colors)
+             this.active_2=2;
            this.select_option_2=true  
         }
         else{
+          this.active_2==1
           alert("유효한 양이온비를 입력해주세요.")
           return;
         }        
       }
       if(range_option==2){
+        this.area='Div_area_2'
         var so
         var temp_c=Number(this.jilso);
         var temp_d=Number(this.inn);
@@ -757,10 +853,11 @@ export default {
             this.area_data_cat.able[3].B=0
             this.area_data_cat.able[3].C=100-this.inn
             this.draw_area(this.area_data_cat,this.colors)
-        
+            this.active_2=2;
             this.select_option_2=true       
         }
         else{
+              this.active_2==1
               alert("유효한 음이온비를 입력해주세요.");
               return;
         }
@@ -769,9 +866,14 @@ export default {
     /////////파이썬 실행 API 요청//////////
     req_minimize:function(body){
       this.loading=true;
-       this.$http.post('/main/nutrient_target', body)
+      this.$http.post('/main/nutrient_target', body)
       .then((res) => {
-       
+            if(this.option==1){
+            this.active_1=3;
+            }
+            else if(this.option==2){
+            this.active_2=4;
+            }
             var res_1=res.data.value[0]
             var res_2=res.data.value[1]
             var res_3=res.data.value[2]
@@ -808,6 +910,7 @@ export default {
             this.show_new=true;
             this.draw_cat();
             this.draw_ani();
+            
       })
       .catch(function (error) {
       alert(error)
@@ -921,6 +1024,7 @@ export default {
       ///////영역 그리기////////////
       /////////////////////////////
       draw_area:function(rawData,colors){
+        
       var data = Object.keys(rawData).map(function(k, i) {
         console.log(i)
         var pts = rawData[k];
@@ -954,7 +1058,8 @@ export default {
             y: 1.1
         }]
     };
-    Plotly.newPlot('Div_area', data, layout);
+    
+    Plotly.newPlot(this.area, data, layout);
   function makeAxis(title) {
   return {
       title: title,
@@ -967,208 +1072,11 @@ export default {
     };
   }
 }
-   /* Cal_totalmeq:function(ec,liter){
-        console.log(liter);
-        var convfactor=9.819;
-        var offset=-1.462;
-        var totalmeq=convfactor*ec+offset;
-        this.totalmeq=totalmeq
-    }
-    ,cat_meq_rto: function(x){
-      var cat_fert_res_meq=[0,0,0];
-      var fert_meq_sum=0;
-      var cat_fert_res_meq_rto_temp=[0,0,0];
-      var cat_fert_res_meq_rto=[0,0,0]
-      for(var j=0;j<3;j++){
-        for(var i=0;i<5;i++){
-          cat_fert_res_meq[j]+=this.el_ratio_cat[j][i]*this.valency_cat[j]*x[i];
-        }
-        fert_meq_sum+=cat_fert_res_meq[j]
-      }
-    for(var k=0;k<3;k++){
-      cat_fert_res_meq_rto_temp[k]=(cat_fert_res_meq[k]/fert_meq_sum)*100;
-      cat_fert_res_meq_rto[k]=round(cat_fert_res_meq_rto_temp[k],0);
-      
-    }
-    this.able_cat=[cat_fert_res_meq_rto[0],cat_fert_res_meq_rto[1],cat_fert_res_meq_rto[2]]
-    var diff_temp_cat=0;
-    for(var m=0;m<3;m++){
-      diff_temp_cat+=pow(cat_fert_res_meq_rto_temp[m]-this.target_cat[m],2)
-    }
-    var res=[fert_meq_sum,diff_temp_cat]
-      return res;
-    }
-    ,ani_meq_rto: function(x){
-      var ani_fert_res_meq=[0,0,0];
-      var fert_meq_sum=0;
-      var ani_fert_res_meq_rto_temp=[0,0,0];
-      var ani_fert_res_meq_rto=[0,0,0]
-      for(var j=0;j<3;j++){
-        for(var i=0;i<5;i++){
-          ani_fert_res_meq[j]+=this.el_ratio_ani[j][i]*this.valency_ani[j]*x[i];
-        }
-        fert_meq_sum+=ani_fert_res_meq[j]
-      }
-    for(var k=0;k<3;k++){
-      ani_fert_res_meq_rto_temp[k]=(ani_fert_res_meq[k]/fert_meq_sum)*100;
-      ani_fert_res_meq_rto[k]=round(ani_fert_res_meq_rto_temp[k],0);
-      
-    }
-    this.able_ani=[ani_fert_res_meq_rto[0],ani_fert_res_meq_rto[1],ani_fert_res_meq_rto[2]]
-    var diff_temp_ani=0;
-    for(var m=0;m<3;m++){
-      diff_temp_ani+=pow(ani_fert_res_meq_rto_temp[m]-this.target_ani[m],2)
-    }
-    var res=[fert_meq_sum,diff_temp_ani]
-     return res;
-    
-    },show_res:function(){
-      var res_cat=[0,0];
-      var res_ani=[0,0];
-      res_cat=this.cat_meq_rto(this.text_x)
-      res_ani=this.ani_meq_rto(this.text_x)
-      var diff=res_ani[1]+res_cat[1]
-      var cat_sum=this.totalmeq/2-res_cat[0]
-      var con1={'type':'eq','fun':cat_sum}
-      var cons=([con1])
-      var b=(0,10000)
-      var bnds=(b,b,b,b,b)
-      var method='SLSQP'   
-      var body={
-          diff:diff,
-          bounds:bnds, 
-          method:method,
-          constraints:cons
-          }
-      var solution=opt.minimize(this.cat_meq_rto(),this.text_x,method,bnds,cons)
-      var x=solution.x  
-      console.log("솔루션")
-      console.log(typeof solution)
-      console.log(solution)
-      console.log("엑스")
-      console.log(typeof x)
-      console.log(x)
-    }*/
-    }         
+  }         
 }
 </script>
 
 <style scoped>
-.inp_main {
-    display: inline-block;
-    width: 80%;
-    min-width: auto;
-    border: 2px solid #55bc7e;
-    line-height: 30px;
-    height: 33px;
-    color: #333;
-    font-size: 13px;
-    padding: 0 6px;
-    vertical-align: middle;
-    border-radius: 3px;
-    box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.1);
-}
 
-.main{
-  overflow-y: initial !important;
-  margin-right: 100px;
-  margin-left: 100px;
-  line-height: 1.2;
-
-}
-.mr8{margin-right:8px !important;}
-.modal-mask {
-  overflow-y: initial !important;
-  position: fixed;
-  z-index: 9998;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, .5);
-  display: table;
-  transition: opacity .3s ease;
-}
-.modal-wrapper {
-  display: table-cell;
-  vertical-align: middle;
-}
-label {font-size:0.8em;}
-p {font-size:1em;}
-.modal-container {
-  height: 80%;
-  overflow-y: auto;
-  margin: 0px auto;
-  background-color: #fff;
-  border-radius: 2px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
-  transition: all .3s ease;
-  font-family: Helvetica, Arial, sans-serif;
-}
-
-.modal-header{
-  opacity: 1 !important;
-  width:800px;
-  height: 40px;
-  margin-top: 0;
-  color:white;
-  background-color : #42b983;
-  position: absolute;
-}
-
-.modal-body {
-  margin: 20px 0;
-}
-.modal-footer{
-  position: relative;
-  margin-right:20px;
-}
-.modal-default-button {
-  float: right;
-}
-.btn-line{min-width:180px;background:#fff;height:54px;line-height:30px;color:#55bc7e;font-size:16px;font-weight:bold;border-radius:3px;padding:0 10px;border:1px solid #55bc7e}
-.modal-enter {
-  opacity: 0;
-}
-.table_for_input{
-  border-collapse: separate;
-  border-spacing: 10px;
-  font-size:1.0em;
-  margin-left: 10px;
-  font-weight: normal;
-}
-.table_for_input tr{
-  height:1.0em;
-  font-weight: normal;
-}
-.table_for_input td{
-  margin-left:1.0em;
-  height:1.0em;
-  font-weight: normal;
-}
-.table_for_res{
-  border:1px solid #DCDFE6;
-  border-radius: 1px;
-  border-collapse: separate;
-  border-spacing: 10px;
-  font-size:1.0em;
-  font-weight: normal;
-}
-.table_for_res tr{
-  font-size:1.0em;
-  font-weight: normal;
-}
-.table_for_res td{
- 
-  height:1.0em;
-  font-weight: normal;
-}
-.modal-leave-active {
-  opacity: 0;
-}
-.modal-enter .modal-container,
-.modal-leave-active .modal-container {
-  -webkit-transform: scale(1.1);
-  transform: scale(1.1);
-}
+@import '../assets/css/calculator.css'
 </style>

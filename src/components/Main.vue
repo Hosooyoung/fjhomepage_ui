@@ -327,7 +327,7 @@ fnGetBoardList() { //데이터 가져오기
     const url = window.URL.createObjectURL(new Blob([response.data], { type: response.headers['content-type'] }));
     const link = document.createElement('a');
     link.href = url;
-    link.setAttribute('download', '개언정보처리방침.pdf');
+    link.setAttribute('download', '개인정보처리방침.pdf');
     document.body.appendChild(link);
     link.click();
 })

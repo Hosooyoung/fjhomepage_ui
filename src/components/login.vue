@@ -146,7 +146,7 @@ methods: {
     alert("서비스 준비중입니다.");
   },
   caculate:function(){
-    window.open("/calculator", "양액계산기", "width=1800px, height=700, toolbar=yes, menubar=yes, scrollbars=yes, resizable=yes" );
+    window.open("/calculator", "양액계산기", "width=1800px, height=800, toolbar=yes, menubar=yes, scrollbars=yes, resizable=yes" );
   },
   go_link:function(where){
     if(where=="main"){
