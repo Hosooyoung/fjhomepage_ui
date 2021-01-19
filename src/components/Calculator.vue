@@ -1,6 +1,6 @@
 <template>
     <div class="main">
-          <div class="modal-body">
+          <div>
             <br>
             <div style="border-bottom:4px solid #55bc7e;">
             <h4 style="font-size:2.2em; margin-left:10%;font-weight:bold;" >양액계산기</h4>
@@ -16,7 +16,7 @@
             </div>
              </div>
             
-          <div class="modal-footer">
+          <div>
             
             <div v-if="option==1" id="auto_search">
               <h4 class="step_tit">양분 비율 자동 탐색</h4>
