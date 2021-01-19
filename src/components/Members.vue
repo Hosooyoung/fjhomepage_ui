@@ -117,14 +117,14 @@
 								<td style="text-align:center;">{{row.phone}}</td>
 								<td>{{row.email}}</td>
 								<td style="text-align:center;">{{row.user_device}}</td>
-                    			<td>
-									<p v-if="row.user_auth==0">활동회원</p>
-                    				<p v-if="row.user_auth==2">휴면</p>
-                    				<p v-if="row.user_auth==1">관리자</p>
-                   					<p v-if="row.user_auth==4">가입신청</p>
+                    			<td style="text-align:center;">
+									<h4 v-if="row.user_auth==0">활동회원</h4>
+                    				<h4 v-if="row.user_auth==2">휴면</h4>
+                    				<h4 v-if="row.user_auth==1">관리자</h4>
+                   					<h4 v-if="row.user_auth==4">가입신청</h4>
                      			</td>
 								 <td>
-									 <button  @click="reset_pw(row.id)" class="btn-line">비밀번호<br>초기화</button>
+									 <button  @click="reset_pw(row.id)" class="btn-line" style="min-width:80px; font-size:13px;">비밀번호<br>초기화</button>
 								 </td>
 							</tr>
 						</tbody>
