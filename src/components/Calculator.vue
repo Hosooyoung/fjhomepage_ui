@@ -9,7 +9,7 @@
             <div style="margin-left:10%;">
             <h4 style="font-size:0.8em;font-weight:bold">계산방법을 선택해주세요.</h4>
             <br>
-            <el-button-group>
+            <el-button-group style="margin-bottom:10px;">
             <el-button type="success"  @click="select_category(1)" >양분 비율 자동 탐색</el-button>
             <el-button type="success"  @click="select_category(2)" >양분 조제 가능 영역 선택</el-button>
             </el-button-group>
