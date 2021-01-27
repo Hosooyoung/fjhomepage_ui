@@ -387,6 +387,22 @@ button {
     padding: 0 15px;
 }
 
+.btn-sm2-green {
+    display: inline-block;
+    min-width: 28px;
+    height: 30px;
+    padding: 0 14px;
+    line-height: 26px;
+    font-size: 14px;
+    font-weight: bold;
+    text-decoration: none;
+    background: #55bc7e;
+    color: #fff;
+    vertical-align: middle;
+    border-radius: 3px;
+    border: 1px solid #999999;
+}
+
 .btn-sm2 {
     display: inline-block;
     min-width: 28px;

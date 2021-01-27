@@ -49,7 +49,7 @@
 								<td>{{row.email}}</td>
 								<td style="text-align:center;">{{row.user_device}}</td>
                     			<td style="text-align:center;">
-									<button  @click="Getjoin(row.id,1)" v-if="row.user_auth==4" class="btn-sm mr8">Y</button>
+									<button  @click="Getjoin(row.id,1)" v-if="row.user_auth==4" class="btn-sm2-green mr8">Y</button>
 									<button @click="Getjoin(row.id,2)" v-if="row.user_auth==4" class="btn-sm2">N</button>
                      			</td>
 							</tr>
@@ -243,10 +243,11 @@ export default {
 				if(res.data.success) {
 					for(var i in this.join_list){
 						this.join_list[i].phone =this.phoneFomatter(this.join_list[i].phone,1)
+					}
 					this.join_list = res.data.join_list;
 					this.join_paging = res.data.join_paging;
 					this.join_no = this.join_paging.totalCount - ((this.join_paging.page-1) * this.join_paging.ipp);
-					}
+					
 				} else {
 					alert("실행중 실패했습니다.\n다시 이용해 주세요.");
 				}
