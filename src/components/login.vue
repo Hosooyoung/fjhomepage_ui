@@ -43,8 +43,12 @@
       <span class="d_mem"> | </span>
       <a href="javascript:;" class="login_btn mr8" v-on:click="logout" >로그아웃</a>
       <span class="d_mem" v-if="check_auth=='admin'"> | </span> 
+      <el-badge :value="new_join" class="item" v-if="check_auth=='admin'">
+        <div style="width:55px;text-align:left;" >
       <a href="javascript:;" class="login_btn" @click="ShowMembers"  v-if="check_auth=='admin'" ref="check_auth">회원관리</a>
-      
+        </div>
+      </el-badge>
+
   </div>
 </div>
 </template>
@@ -66,10 +70,12 @@ export default {
     ,showModal_farmos:false
     ,showModal_Cal:false
     ,modal_message:''
+    ,new_join:''
   } 
 },
 mounted(){
     this.check_login();
+    this.get_new_join_count();
 },
 methods: {
  login: function () {
@@ -158,6 +164,23 @@ methods: {
     else if(where=="board"){
       this.$router.push({path:'/board'});
     }
+  },
+  get_new_join_count:function(){
+      var auth=localStorage.getItem("auth")
+      if(auth=='admin'){
+      this.$http.post('/users/get_newJoin')
+			.then((res)=>{
+        if(res.data.success==true){
+          this.new_join=res.data.count;
+        }
+        else{
+          this.new_join='';
+        }
+			})
+			.then((err)=>{
+				console.log(err);
+      })
+      }
   }
   
 },
