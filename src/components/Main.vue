@@ -144,7 +144,7 @@
   <div class="footer_in">
     <div class="ft_logo"> <img src="../assets/img/footer_logo.png" alt="한국과학기술연구원 강릉분원 천연물연구소"> </div>
     <div class="ft-text"> (25451) 강원도 강릉시 사임당로 679 한국과학기술연구원 강릉분원 천연물연구소<br>
-      <strong>TEL : </strong>031-360-1970 <strong class="ml20">Fax :</strong>033-650-3419<br>
+      <strong>TEL : </strong>033-650-3662 <strong class="ml20">Fax :</strong>033-650-3419<br>
     </div>
     <ul class="menu">
       <li><a href="javascript:;" @click="Download_5">개인정보처리지침 </a></li>
