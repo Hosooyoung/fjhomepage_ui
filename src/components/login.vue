@@ -15,8 +15,8 @@
  
  <div v-if="status==0">
    <div class="util">
-     <input type="text" title="아이디"  v-model="user.userid" class="inp_main mr8" style="width:150px;" placeholder="아이디">
-     <input type="password" title="비밀번호" v-model="user.password" class="inp_main mr20" style="width:150px;" placeholder="비밀번호">
+     <input type="text" title="아이디" v-on:keyup.enter="login" v-model="user.userid" class="inp_main mr8" style="width:150px;" placeholder="아이디">
+     <input type="password" title="비밀번호" v-on:keyup.enter="login" v-model="user.password" class="inp_main mr20" style="width:150px;" placeholder="비밀번호">
      <a href="javascript:;" v-on:click="login" class="login_btn mr8" >로그인</a><span class="d_mem"> | </span> <a style="font-weight:bold" href="javascript:;"  v-on:click="createAccount">회원가입</a> 
      <!--button  v-on:click="login" style="margin-top:5px;font-size:1.3em;">로그인</button>
      <span class="d_mem"> | </span> <button  style="margin-top:5px;font-size:1.3em;" class="mr8"  v-on:click="createAccount">회원가입</button-->
