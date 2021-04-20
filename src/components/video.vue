@@ -1,0 +1,105 @@
+<template>
+    <div class="main">
+          <div>
+            <br>
+            <div style="border-bottom:4px solid #55bc7e;">
+            <h4 style="font-size:2.2em; margin-left:10%;font-weight:bold;" >동영상 메뉴얼</h4>
+            </div>
+          </div>
+          <div style="margin-top:2%;margin-left:10%;margin-right:10%; ">
+              <el-button-group style="border-bottom:black 1px;">
+            <el-button type="success"  @click="select_category(1)" >육묘 방법</el-button>
+            <el-button type="success"  @click="select_category(2)" >표준양액조제방법(비커가 있는 경우)</el-button>
+            <el-button type="success"  @click="select_category(3)" >표준양액조제방법(비커가 없는 경우)</el-button>
+            <el-button type="success"  @click="select_category(4)" >양액커스터마이징</el-button>
+            </el-button-group>
+            <el-card class="box-card">
+            <div v-if="state==1" >
+                <h4>[육묘] 푸드쥬크박스에서 정식할 작물을 육묘하는 방법에 대해 설명합니다</h4>
+                 <video  controls  preload="auto">
+                    <source src="../video/seedling_manual.mp4" type="video/mp4">
+                </video>             
+              </div>
+              <div v-if="state==2" >
+                <h4>[표준양액조제] 양액조제 표준에 맞춰 비커를 이용해 양액을 조제하는 방법을 설명합니다</h4>
+                 <video  controls  preload="auto">
+                    <source src="../video/make_nutrient_with_beaker.mp4" type="video/mp4">
+                </video>             
+              </div>
+              <div v-if="state==3">
+                <h4>[표준양액조제] 양액조제 표준에 맞춰 비커가 없을 경우 양액을 조제하는 방법을 설명합니다</h4>
+                 <video  controls  preload="auto">
+                    <source src="../video/make_nutrient_without_beaker.mp4" type="video/mp4">
+                </video>             
+              </div>
+              <div v-if="state==4">
+                <h4>[양액조제] 푸드쥬크박스 홈페이지의 양액계산기를 이용하여 원하는 조성의 양액조제방법을 설명합니다</h4>
+                 <video  controls  preload="auto">
+                    <source src="../video/nutrient_customizing.mp4" type="video/mp4">
+                </video>             
+              </div>
+            </el-card>
+          <!--el-tabs  type="card">
+          <el-tab-pane  label="육묘 방법">
+              <div style=" height:700px">
+                푸드쥬크박스에서 정식할 작물을 육묘하는 방법에 대해 설명합니다
+                 <video  controls  preload="auto">
+                    <source src="../video/seedling_manual.mp4" type="video/mp4">
+                </video>             
+              </div>
+          </el-tab-pane>
+          <el-tab-pane  label="표준양액조제방법(비커가 있을경우)">
+              <div>
+              양액조제 표준에 맞춰 비커를 이용해 양액을 조제하는 방법을 설명합니다
+                 <video  controls  preload="auto">
+                    <source src="../video/make_nutrient_with_beaker.mp4" type="video/mp4">
+                </video>             
+              </div>
+          </el-tab-pane>
+          <el-tab-pane  label="표준양액조제방법(비커가 없을경우)">
+              <div>
+              양액조제 표준에 맞춰 비커가 없을 경우에 양액을 조제하는 방법을 설명합니다
+                 <video  controls  preload="auto">
+                    <source src="../video/make_nutrient_without_beaker.mp4" type="video/mp4">
+                </video>             
+              </div>
+          </el-tab-pane>
+          <el-tab-pane  label="양액커스터마이징">
+              <div>
+                푸드쥬크박스 홈페이지의 양액계산기를 이용하여 원하는 조성의 양액조제방법을 설명합니다
+                 <video  controls  preload="auto">
+                    <source src="../video/nutrient_customizing.mp4" type="video/mp4">
+                </video>             
+              </div>
+          </el-tab-pane>
+          </el-tabs-->
+          </div>
+        </div>
+</template>
+<script>
+export default {
+    data: function () {
+        return {
+            state:1 
+        }
+    }
+    ,
+    mounted(){
+    },
+    methods:{ 
+      select_category:function(num){
+          this.state=num
+      }
+
+  }         
+}
+</script>
+
+<style scoped>
+.el-tab{
+    color:#55bc7e; 
+
+}
+video {width: 80%; max-height:100% ;display:block; margin:20px ;}
+@import '../assets/css/calculator.css'
+</style>

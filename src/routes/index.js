@@ -13,6 +13,7 @@ import inforead from '@/components/inforead'
 import infosearch from '@/components/infosearch'
 import members from '@/components/Members'
 import calculator from '@/components/Calculator'
+import video from '@/components/video'
 Vue.use(Router)
 
 
@@ -79,6 +80,11 @@ export const router = new Router({
             path: '/calculator',
             name: 'calculator',
             component: calculator
+        },
+        {
+            path: '/video',
+            name: 'video',
+            component: video
         }
 
     ]

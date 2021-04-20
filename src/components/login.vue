@@ -9,6 +9,7 @@
         <li ><a href="/">Main</a></li>
         <li><a href="/info" >공지사항</a></li>
         <li><a href="/board">게시판</a></li>
+        <li><a @click="video">동영상</a></li>
       </ul>
     </div>
   </div>
@@ -153,6 +154,9 @@ methods: {
   },
   caculate:function(){
     window.open("/calculator", "양액계산기", "width=1800px, height=800, toolbar=yes, menubar=yes, scrollbars=yes, resizable=yes" );
+  },
+  video:function(){
+    window.open("/video", "동영상메뉴얼", "width=1800px, height=900, toolbar=yes, menubar=yes, scrollbars=yes, resizable=yes" );
   },
   go_link:function(where){
     if(where=="main"){
