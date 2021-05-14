@@ -8,7 +8,7 @@
     <ul>
         <li><a href="/info" >공지사항</a></li>
         <li><a href="/board">게시판</a></li>
-        <li><a @click="video">동영상 메뉴얼</a></li>
+        <li><a @click="video">동영상 매뉴얼</a></li>
       </ul>
     </div>
   </div>
