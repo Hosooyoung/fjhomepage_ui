@@ -6,10 +6,9 @@
     <h1 id="logo"><a href="/" class=""></a></h1>
     <div id="gnb">
     <ul>
-        <li ><a href="/">Main</a></li>
         <li><a href="/info" >공지사항</a></li>
         <li><a href="/board">게시판</a></li>
-        <li><a @click="video">동영상</a></li>
+        <li><a @click="video">동영상 메뉴얼</a></li>
       </ul>
     </div>
   </div>
