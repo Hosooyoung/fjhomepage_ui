@@ -3,7 +3,7 @@
           <div>
             <br>
             <div style="border-bottom:4px solid #55bc7e;">
-            <h4 style="font-size:2.2em; margin-left:10%;font-weight:bold;" >동영상 메뉴얼</h4>
+            <h4 style="font-size:2.2em; margin-left:10%;font-weight:bold;" >동영상 매뉴얼</h4>
             </div>
           </div>
           <div style="margin-top:2%;margin-left:10%;margin-right:10%; ">
